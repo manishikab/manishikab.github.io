@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Manishika Balamurugan's personal portfolio: Neuroscience + CS."
+    />
+    <meta name="author" content="Manishika Balamurugan" />
+
+    <title>Manishika Balamurugan</title>
+
+    
+    <style>
+
+/* basic */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: white;
+        color: #222;
+        font-family: "Inter", sans-serif;
+      }
+
+      h1 {
+        font-size: 5rem;
+        text-align: center;
+        color: #66101f;
+        margin-bottom: 1px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        text-align: center;
+        color: #66101f;
+        margin-bottom: 1px;
+      }
+
+/* navigation bar */
+      a {
+        color: rgb(186, 35, 35);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .navbar {
+        background-color: #f5f5f5;
+        padding: 1rem;
+        display: flex;
+        gap: 1.5rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+      }
+
+/* home */
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fefefe;
+        padding-top: 80px;
+        box-sizing: border-box;
+      }
+
+      .hero h1 {
+        z-index: 1000;
+        align-items: center;
+        font-size: 3.5rem;
+        color: #222;
+      }
+
+      .hero h2 {
+        z-index: 1000;
+        align-items: center;
+        font-size: 2rem;
+        margin-top: 1rem;
+        color: #444;
+      }
+
+/* other section headers */
+.section-header {
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        padding: 1rem;
+        font-size: 2rem;
+        text-align: center;
+        background-color: #66101f;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+/* about me */
+  .section-header-first {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        font-size: 2rem;
+        text-align: center;
+        background-color: #66101f;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .intro p {
+        line-height: 1.5;
+      }
+
+      em {
+        color: rgb(186, 35, 35);
+        font-style: normal;
+        font-weight: bold;
+      }
+
+      .about-container {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        margin-right: 50px;
+        margin-left: 50px;
+        justify-content: center;
+      }
+
+      .profile-pic {
+        width: 500px;
+        height: auto;
+        object-fit: cover;
+      }
+      
+      .info-card {
+        background-color: #f9f9f9;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .info-card h3 {
+        color: #66101f;
+      }
+
+/* projects */
+      .project-grid {
+        display: grid;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        margin-left: 3rem;
+        margin-right: 3rem;
+        background-color: #f9f9f9;
+        width: 400px;
+        height: 400px; 
+        display: flex;
+        flex-direction: column;
+        font-weight: normal;
+        color: #222;
+        transition: transform 0.2s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .project-info {
+        padding: 1rem;
+      }
+
+      .project-info h3 {
+        font-size: 1.25rem;
+        color: #66101f;
+      }
+
+      .project-info p {
+        line-height: 1.5;
+      }
+
+/* contact */
+      #contact {
+        margin-top: 3rem;
+        background-color: #f9f9f9;
+        align-items: center;
+        padding: 4rem;
+      }
+
+      .contact_links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .contact_links a {
+        background-color: #66101f;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .contact_links a:hover {
+        transform: translateY(-2px);
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #66101f;
+        color: white;
+        padding: 0.75rem 1.25rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s;
+        z-index: 999;
+      }
+
+      .back-to-top:hover {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+
+<!-- HTML -->
+  <body>
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#my-work">My Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <header id="home" class="hero">
+      <div id="particles-js"></div>
+      <h1>Hi, I'm <em>Manishika</em></h1>
+      <h2>
+        I am an aspiring <span id="dynamic-text"></span><span class="cursor">|</span>
+      </h2>
+    </header>
+  
+    <section id="about" class="section">
+      <h2 class="section-header-first">ABOUT ME</h2>
+      <div class="about-container">
+        <img src="images/profile.JPG" alt="Manishika Balamurugan" class="profile-pic" />
+        <div class="intro">
+
+          <div class="info-card">
+            <h3>Who I Am</h3>
+            <p>
+              I'm Manishika Balamurugan, a third-year student at the University
+              of Michigan, double majoring in
+              <strong>Biopsychology, Cognition, and Neuroscience</strong> and
+              <strong>Computer Science</strong>.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>What I Study</h3>
+            <p>
+              I'm interested in using
+              <strong>brain imaging techniques</strong> and
+              <strong>computational modeling methods</strong> to study
+              <em>neurodegenerative diseases</em> and explore possible pathways
+              for <em>neural repair</em>.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>What I Do</h3>
+            <p>
+              At the <strong>University of Michigan</strong>, I study
+              <em>neural dedifferentiation</em> in older adults who are either
+              healthy or have mild cognitive impairment. This summer, I'm
+              completing a research fellowship at the
+              <strong>University of Pittsburgh</strong>, where I'm contributing
+              to the development of a <em>new hippocampal model</em>.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Where I’m Going</h3>
+            <p>
+              I'm seeking a <em>software engineering internship</em> to
+              strengthen my coding experience and complement my strong
+              background in research.
+            </p>
+          </div>
+
+          <a href="images/Manishika Balamurugan CV.pdf" target="_blank">
+            Looking for my CV?
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="my-work" class="section">
+      <h2 class="section-header">MY WORK</h2>
+
+      <div class="project-category">
+        <h2 class="category-header">Coding Projects</h2>
+        <div class="project-grid">
+          <a 
+            href="https://manishikab-flight-price-prediction-app-model-ognglx.streamlit.app/"
+            target="_blank"
+            class="project-card"
+          >
+            <img src="images/Screenshot 2025-06-17 at 12.20.03 PM.png" alt="Plane flying in blue sky" />
+            <div class="project-info">
+              <h3>Flight Price Predictor</h3>
+              <p>
+                Streamlit app that predicts flight prices using a Random Forest Regressor model, based on input features like departure city, arrival city, airline carrier, and travel quarter.
+              </p>
+            </div>
+          </a>
+        </div>
+        </div>
+      </div>
+
+      <div class="project-category">
+        <h2 class="category-header">Neuroscience Projects</h2>
+        <div class="project-grid">
+          <a
+            href="images/UROP Symposium 2025.pdf"
+            target="_blank"
+            class="project-card"
+          >
+            <img
+              src="images/left hemisphere (1).png"
+              alt="Left Hemisphere Activation"
+            />
+            <div class="project-info">
+              <h3>UM Undergraduate Research Symposium Poster 2025</h3>
+              <p>
+                Presented research on GABA differences in healthy vs. MCI adults
+                at the 2025 Undergraduate Research Symposium.
+              </p>
+            </div> 
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact_links">
+        <a href="mailto:mbala@umich.edu">Email</a>
+        <a
+          href="https://www.linkedin.com/in/manishika-balamurugan-7006ba2b1/"
+          target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://github.com/manishikab" target="_blank">GitHub</a>
+      </div>
+    </section>
+
+    <a href="#home" class="back-to-top">↑ Back to Top</a>
+
+    <script>
+      // JS
+
+      // home typing animation
+      const roles = [
+        "neuroscientist",
+        "researcher",
+        "computer scientist",
+        "discoverer",
+      ];
+
+      let index = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const target = document.getElementById("dynamic-text");
+
+      function typeEffect() {
+        const current = roles[index];
+        if (isDeleting) {
+          target.textContent = current.substring(0, charIndex--);
+          if (charIndex < 0) {
+            isDeleting = false;
+            index = (index + 1) % roles.length;
+            setTimeout(typeEffect, 300);
+            return;
+          }
+        } else {
+          target.textContent = current.substring(0, charIndex++);
+          if (charIndex > current.length) {
+            isDeleting = true; 
+            setTimeout(typeEffect, 1000);
+            return;
+          }
+        }
+        setTimeout(typeEffect, 100);
+      }
+
+      typeEffect();
+    </script>
+
+    <style>
+      
+      #dynamic-text {
+        color: rgb(186, 35, 35);
+        font-weight: bold;
+      }
+
+      .cursor {
+        margin-left: 2px;
+        animation: blink 1s infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+      // home background particle animation
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 50 },
+          size: { value: 3 },
+          color: { value: "#66101f" },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#66101f",
+            opacity: 0.5,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+          },
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+          },
+        },
+      });
+    </script>
+
+    <script>
+      // back to top button at bottom
+      const backToTop = document.querySelector(".back-to-top");
+
+      window.addEventListener("scroll", () => {
+        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+
+        if (nearBottom) {
+          backToTop.style.display = "block";
+          backToTop.style.opacity = "0.8";
+          backToTop.style.pointerEvents = "auto";
+        } else {
+          backToTop.style.opacity = "0";
+          backToTop.style.pointerEvents = "none";
+        }
+      });
+
+    </script>
+  </body>
+</html>
