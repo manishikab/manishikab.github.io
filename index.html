@@ -63,14 +63,19 @@
       }
 
 /* home */
-    #particles-js {
+
+      #particles-js {
         position: absolute;
+        top: 0; 
+        left: 0;
         width: 100%;
         height: 100%;
+        min-height: 100vh;
         z-index: 0;
       }
 
       .hero {
+        min-height: 100vh;
         position: relative;
         width: 100%;
         height: 100vh;
@@ -79,30 +84,27 @@
         justify-content: center;
         align-items: center;
         background-color: #fefefe;
-        padding-top: 80px;
+        /* REMOVE padding-top here */
         box-sizing: border-box;
         overflow: hidden;
-        
       }
 
-      .hero h1 {
-        z-index: 1000;
-        align-items: center;
-        font-size: 3.5rem;
-        color: #222;
-      }
+.hero h1 {
+  margin-top: 80px; /* replace padding on hero */
+  z-index: 1000;
+  font-size: 3.5rem;
+  color: #222;
+}
 
-      .hero h2 {
-        z-index: 1000;
-        align-items: center;
-        font-size: 2rem;
-        margin-top: 1rem;
-        color: #444;
-      }
+.hero h2 {
+  margin-top: 1rem;
+  z-index: 1000;
+  font-size: 2rem;
+  color: #444;
+}
 
 /* other section headers */
       .section-header {
-        margin-top: 4rem;
         margin-bottom: 2rem;
         padding: 1rem;
         font-size: 2rem;
@@ -115,6 +117,7 @@
 
 /* about me */
       .section-header-first {
+        margin-top: 0rem;
         margin-bottom: 2rem;
         padding: 1rem;
         font-size: 2rem;
@@ -187,24 +190,24 @@
 
 
 /* projects */
-      .project-grid {
-        display: grid;
-        gap: 2rem;
-        margin-top: 2rem;
-      }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* exactly 2 columns */
+  gap: 2rem;
+  margin-top: 2rem;
+}
 
-      .project-card {
-        margin-left: 3rem;
-        margin-right: 3rem;
-        background-color: #f9f9f9;
-        width: 400px;
-        height: 400px; 
-        display: flex;
-        flex-direction: column;
-        font-weight: normal;
-        color: #222;
-        transition: transform 0.2s ease;
-      }
+.project-card {
+  margin-left: 2rem;
+  background-color: #f9f9f9;
+  width: 100%; /* fill the column */
+  height: auto; /* optional: remove fixed height */
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+  color: #222;
+  transition: transform 0.2s ease;
+}
 
       .project-card:hover {
         transform: translateY(-4px);
@@ -227,6 +230,12 @@
 
       .project-info p {
         line-height: 1.5;
+      }
+
+      .note {
+        font-size: 0.9em;       
+        color: #666666;          
+        font-style: italic;      
       }
 
 /*MOBILE*/ 
@@ -331,7 +340,7 @@
     <section id="about" class="section">
       <h2 class="section-header-first">ABOUT ME</h2>
       <div class="about-container">
-        <img src="images/profile.JPG" alt="Manishika Balamurugan" class="profile-pic" />
+        <img src="images/new_pfp.png" alt="Manishika Balamurugan" class="profile-pic" />
         <div class="intro">
 
           <div class="info-card">
@@ -389,19 +398,45 @@
       <div class="project-category">
         <h2 class="category-header">Coding Projects</h2>
         <div class="project-grid">
-          <a 
-            href="https://manishikab-flight-price-prediction-app-model-ognglx.streamlit.app/"
-            target="_blank"
-            class="project-card"
-          >
-            <img src="images/Screenshot 2025-06-17 at 12.20.03 PM.png" alt="Plane flying in blue sky" />
+          
+          <div class="project-card">
+            <img src="images/flight_app_ss.png" alt="Screenshot of Flight Price Predictor app" />
             <div class="project-info">
               <h3>Flight Price Predictor</h3>
               <p>
-                Streamlit app that predicts flight prices using a Random Forest Regressor model, based on input features like departure city, arrival city, airline carrier, and travel quarter.
+                A web app built with Streamlit that predicts flight prices using a Random Forest Regressor. Users input features like departure city, arrival city, airline carrier, and travel quarter.
+              </p>
+          
+              <p>
+                🌐 <a href="https://manishikab-flight-price-prediction-app-model-ognglx.streamlit.app/" target="_blank">
+                  Try the app on Streamlit
+                </a>
               </p>
             </div>
-          </a>
+          </div>
+          
+          <div class="project-card">
+            <img src="images/cat_game_ss.png" alt="Screenshot of Catch the Cat game" />
+            <div class="project-info">
+              <h3>Catch The Cat!</h3>
+              <p>A 2D puzzle game developed using C++ and SFML.</p>
+          
+              <p>
+                🎮 <a href="https://manishikab.itch.io/catch-the-cat" target="_blank">
+                  Download on itch.io
+                </a>
+                <br />
+                📺 <a href="images/Gameplay_for_portfolio.mp4" target="_blank">
+                  Watch gameplay video
+                </a>
+              </p>
+          
+              <p class="note">
+                ⚠️ Note: macOS may prevent unsigned apps from running. The video above shows full gameplay without requiring installation.
+              </p>
+            </div>
+          </div>
+
         </div>
         </div>
       </div>
@@ -409,24 +444,44 @@
       <div class="project-category">
         <h2 class="category-header">Neuroscience Projects</h2>
         <div class="project-grid">
-          <a
-            href="images/UROP Symposium 2025.pdf"
-            target="_blank"
-            class="project-card"
-          >
+
+    
+          <div class="project-card">
             <img
               src="images/left hemisphere (1).png"
-              alt="Left Hemisphere Activation"
+              alt="fMRI image of left hemisphere activation"
             />
             <div class="project-info">
-              <h3>UM Undergraduate Research Symposium Poster 2025</h3>
+              <h3>UM Undergraduate Research Symposium Poster (2025)</h3>
               <p>
-                Presented research on GABA differences in healthy vs. MCI adults
-                at the 2025 Undergraduate Research Symposium.
+                Presented research on GABA differences in healthy vs. MCI adults at the University of Michigan's 2025 Undergraduate Research Symposium.
               </p>
-            </div> 
-          </a>
+          
+              <p>
+                📄 <a href="images/UROP Symposium 2025.pdf" target="_blank">
+                  View full poster (PDF)
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img
+              src="images/tractography.png"
+              alt="Tractography image of hippocampus"
+            />
+            <div class="project-info">
+              <h3>Pitt Research Fellowship (2025)</h3>
+              <p>Developing a new model of the hippocampus for use in clinical interventions of several psychiatric and neurological disorders.</p>
+          
+              <p class="note">
+                📄 Results pending publication!
+              </p>
+            </div>
+          </div>
+
         </div>
+        
       </div>
     </section>
 
