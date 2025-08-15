@@ -84,13 +84,12 @@
         justify-content: center;
         align-items: center;
         background-color: #fefefe;
-        /* REMOVE padding-top here */
         box-sizing: border-box;
         overflow: hidden;
       }
 
 .hero h1 {
-  margin-top: 80px; /* replace padding on hero */
+  margin-top: 80px; 
   z-index: 1000;
   font-size: 3.5rem;
   color: #222;
@@ -192,20 +191,20 @@
 /* projects */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* maximum 3 per row */
   gap: 2rem;
   margin-top: 2rem;
-  padding: 0 2rem;       /* adds space on left & right */
-  max-width: 1200px;     /* optional: keeps grid from getting too wide on large screens */
-  margin-left: auto;     /* centers the grid horizontally */
-  margin-right: auto;    /* centers the grid horizontally */
+  padding: 0 2rem;       
+  max-width: 1200px;   
+  margin-left: auto;     
+  margin-right: auto;   
 }
 
 .project-card {
   
   background-color: #f9f9f9;
-  width: 100%; /* fill the column */
-  height: auto; /* optional: remove fixed height */
+  width: 100%; 
+  height: auto; 
   display: flex;
   flex-direction: column;
   font-weight: normal;
@@ -404,7 +403,7 @@
         <div class="project-grid">
           
           <div class="project-card">
-            <img src="images/flight_app_ss.png" alt="Screenshot of Flight Price Predictor app" />
+            <img src="images/flight-app/flight_app_ss.png" alt="Screenshot of Flight Price Predictor app" />
             <div class="project-info">
               <h3>Flight Price Predictor</h3>
               <p>
@@ -420,7 +419,7 @@
           </div>
           
           <div class="project-card">
-            <img src="images/cat_game_ss.png" alt="Screenshot of Catch the Cat game" />
+            <img src="images/cat-game/cat_game_ss.png" alt="Screenshot of Catch the Cat game" />
             <div class="project-info">
               <h3>Catch The Cat!</h3>
               <p>A 2D puzzle game developed using C++ and SFML.</p>
@@ -430,7 +429,7 @@
                   Download on itch.io
                 </a>
                 <br />
-                📺 <a href="images/Gameplay_for_portfolio.mp4" target="_blank">
+                📺 <a href="images/cat-game/Gameplay_for_portfolio.mp4" target="_blank">
                   Watch gameplay video
                 </a>
               </p>
@@ -442,10 +441,10 @@
           </div>
 
           <div class="project-card">
-            <img src="images/newfacerec.png" alt="Images of recognized face (John Doe) vs unrecognized face" />
+            <img src="images/face-rec/newfacerec.png" alt="Images of recognized face (John Doe) vs unrecognized face" />
             <div class="project-info">
               <h3>Face Recognition Attendance System</h3>
-              <p> A real-time attendance system built with Python, OpenCV, and deep learning-based face recognition that 
+              <p> A real-time attendance system that 
                   identifies individuals via webcam, 
                   logs attendance with timestamps in CSV format, 
                   and sends automated email alerts with snapshots of unknown faces.</p>
@@ -456,6 +455,26 @@
               </p>
             </div>
           </div>
+
+          <div class="project-card">
+           <img src="images/brain-mri/mriscan.png" alt="mri scan of brain with tumor" />
+           <div class="project-info">
+             <h3>Brain Tumor Detection & Classification Using Deep Learning</h3>
+             <p> A convolutional neural network to classify MRI scans into tumor and non-tumor categories with high accuracy.</p>
+                
+               <br />
+               📈 <a href="brain-ml.html" target="_blank">
+                 See model statistics
+               </a>
+               <br />
+               📊 <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data" target="_blank">
+                Explore the public dataset
+               </a>
+             </p>
+      
+           </div>
+         </div>
+
           
        
 
@@ -470,7 +489,7 @@
     
           <div class="project-card">
             <img
-              src="images/left hemisphere (1).png"
+              src="images/neuro-projects/left hemisphere (1).png"
               alt="fMRI image of left hemisphere activation"
             />
             <div class="project-info">
@@ -480,7 +499,7 @@
               </p>
           
               <p>
-                📄 <a href="images/UROP Symposium 2025.pdf" target="_blank">
+                📄 <a href="images/neuro-projects/UROP Symposium 2025.pdf" target="_blank">
                   View full poster (PDF)
                 </a>
               </p>
@@ -489,7 +508,7 @@
 
           <div class="project-card">
             <img
-              src="images/tractography.png"
+              src="images/neuro-projects/tractography.png"
               alt="Tractography image of hippocampus"
             />
             <div class="project-info">
