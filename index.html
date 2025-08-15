@@ -192,13 +192,17 @@
 /* projects */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* exactly 2 columns */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
+  padding: 0 2rem;       /* adds space on left & right */
+  max-width: 1200px;     /* optional: keeps grid from getting too wide on large screens */
+  margin-left: auto;     /* centers the grid horizontally */
+  margin-right: auto;    /* centers the grid horizontally */
 }
 
 .project-card {
-  margin-left: 2rem;
+  
   background-color: #f9f9f9;
   width: 100%; /* fill the column */
   height: auto; /* optional: remove fixed height */
@@ -436,6 +440,24 @@
               </p>
             </div>
           </div>
+
+          <div class="project-card">
+            <img src="images/newfacerec.png" alt="Images of recognized face (John Doe) vs unrecognized face" />
+            <div class="project-info">
+              <h3>Face Recognition Attendance System</h3>
+              <p> A real-time attendance system built with Python, OpenCV, and deep learning-based face recognition that 
+                  identifies individuals via webcam, 
+                  logs attendance with timestamps in CSV format, 
+                  and sends automated email alerts with snapshots of unknown faces.</p>
+                </a>
+                📺 <a href="face-recognition.html" target="_blank">
+                  Watch demo video
+                </a>
+              </p>
+            </div>
+          </div>
+          
+       
 
         </div>
         </div>
