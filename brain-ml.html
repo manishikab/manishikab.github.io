@@ -1,145 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Brain MRI Classification Project</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brain MRI Classification — Manishika Balamurugan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#fafaf8;
+    --panel:#ffffff;
+    --panel-border:#e2e0da;
+    --white:#111110;
+    --grey:#6b6b66;
+    --grey-dim:#a6a49c;
+    --red:#8a0e22;
+    --red-dim:#e8c6cb;
+  }
 
-    h1 {
-      margin-bottom: 15px;
-      color: #66101f;
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      min-height: 100vh;
-    }
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
 
-   /* MRI Scans Row */
-    .scan-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      width: 90%;
-      margin-bottom: 30px;
-    }
+  ::selection{background:var(--red);color:#fdfaf8;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
 
-    .scan {
-      text-align: center;
-    }
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
 
-    .scan img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
+  /* ---------- top bar ---------- */
+  header{
+    position:sticky;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(250,250,248,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .nav-logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;}
+  .nav-logo .dot{color:var(--red);}
+  .back-link{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--grey);
+    display:flex;align-items:center;gap:8px;
+    transition:color .2s;
+  }
+  .back-link:hover{color:var(--red);}
 
-    .scan p {
-      margin-top: 5px;
-      font-size: 0.9rem;
-      color: #333;
-    }
+  /* ---------- hero ---------- */
+  .page-hero{padding:90px 0 60px;border-bottom:1px solid var(--panel-border);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--red);
+    letter-spacing:.08em;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--red);display:inline-block;}
+  h1.page-title{
+    font-size:clamp(32px,5vw,52px);
+    font-weight:800;letter-spacing:-0.02em;
+    margin-bottom:18px;
+  }
+  .page-summary{
+    font-size:15.5px;color:var(--grey);
+    max-width:680px;
+  }
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      width: 90%;
-      max-width: 1200px;
-    }
+  section{padding:90px 0;border-bottom:1px solid var(--panel-border);}
+  section:last-of-type{border-bottom:none;}
 
-    .card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+  h2.section-title{
+    font-size:clamp(24px,3.4vw,32px);
+    font-weight:800;letter-spacing:-0.02em;
+    margin-bottom:44px;
+  }
 
-    .card img {
-      max-width: 100%;
-      max-height: 40vh;
-      border-radius: 5px;
-      object-fit: contain;
-    }
+  /* ---------- scan row ---------- */
+  .scan-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .scan{
+    position:relative;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    overflow:hidden;
+  }
+  .scan .corner{position:absolute;width:20px;height:20px;border:3px solid var(--red);z-index:2;}
+  .scan .corner.tl{top:-2px;left:-2px;border-right:none;border-bottom:none;}
+  .scan .corner.br{bottom:-2px;right:-2px;border-left:none;border-top:none;}
+  .scan img{
+    width:100%;height:260px;
+    min-width:0;min-height:0;
+    object-fit:cover;
+    display:block;
+  }
+  .scan p{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--grey);
+    text-align:center;
+    padding:14px 8px;
+    border-top:1px solid var(--panel-border);
+    letter-spacing:.04em;
+  }
 
-    .card h2 {
-      font-size: 1.2rem;
-      color: #66101f;
-      margin: 10px 0 5px;
-    }
+  @media(max-width:720px){
+    .scan-row{grid-template-columns:repeat(2,1fr);}
+  }
 
-      @media (max-width: 768px) {
-      .scan-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .grid-container {
-        grid-template-columns: 1fr;
-      }
-    }
+  /* ---------- stat cards ---------- */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  .stat-card{
+    position:relative;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .stat-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--red);
+  }
+  .stat-card-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--red);
+    letter-spacing:.08em;text-transform:uppercase;
+    padding:22px 22px 0;
+  }
+  .stat-card .img-wrap{
+    padding:16px 22px 22px;
+    display:flex;align-items:center;justify-content:center;
+    flex:1;
+  }
+  .stat-card img{
+    max-width:100%;
+    max-height:38vh;
+    object-fit:contain;
+    display:block;
+  }
 
-  </style>
+  @media(max-width:720px){
+    .stat-grid{grid-template-columns:1fr;}
+  }
+
+  footer{
+    padding:32px;text-align:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--grey-dim);
+  }
+  footer .red{color:var(--red);}
+</style>
 </head>
 <body>
 
-  <!-- MRI Scan Row -->
-   <h1>Sample MRI Scans</h1>
-  <div class="scan-row">
-    <div class="scan">
-      <img src="images/brain-mri/gg (1).jpg" alt="Glioma Scan" />
-      <p>Glioma</p>
-    </div>
-    <div class="scan">
-      <img src="images/brain-mri/m (2).jpg" alt="Meningioma Scan" />
-      <p>Meningioma</p>
-    </div>
-    <div class="scan">
-      <img src="images/brain-mri/p (4).jpg" alt="Pituitary Scan" />
-      <p>Pituitary</p>
-    </div>
-    <div class="scan">
-      <img src="images/brain-mri/n (3).jpg" alt="Normal Scan" />
-      <p>Normal</p>
+<header>
+  <nav class="wrap">
+    <div class="nav-logo">manishika<span class="dot">.</span>dev</div>
+    <a class="back-link" href="index.html">&larr; back to portfolio</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">project</div>
+    <h1 class="page-title">Brain Tumor Detection &amp; Classification</h1>
+    <p class="page-summary">A convolutional neural network trained to classify MRI scans into tumor and non-tumor categories with high accuracy, including per-class performance across glioma, meningioma, pituitary, and normal scans.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">01 — data</div>
+    <h2 class="section-title">Sample MRI Scans</h2>
+    <div class="scan-row">
+      <div class="scan">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <img src="images/brain-mri/gg (1).jpg" alt="Glioma Scan">
+        <p>Glioma</p>
+      </div>
+      <div class="scan">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <img src="images/brain-mri/m (2).jpg" alt="Meningioma Scan">
+        <p>Meningioma</p>
+      </div>
+      <div class="scan">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <img src="images/brain-mri/p (4).jpg" alt="Pituitary Scan">
+        <p>Pituitary</p>
+      </div>
+      <div class="scan">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <img src="images/brain-mri/n (3).jpg" alt="Normal Scan">
+        <p>Normal</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Charts 2x2 Grid -->
-    <h1>Model Statistics</h1>
-
-  <div class="grid-container">
-    <div class="card">
-      
-      <img src="images/brain-mri/training_metrics.png" alt="Training Metrics" />
-    </div>
-
-    <div class="card">
-     
-      <img src="images/brain-mri/accuracy_comparison.png" alt="Model Accuracy" />
-    </div>
-
-    <div class="card">
-      
-      <img src="images/brain-mri/confusion_matrix.png" alt="Confusion Matrix" />
-    </div>
-
-    <div class="card">
-     
-      <img src="images/brain-mri/per_class_metrics.png" alt="Per Tumor Class Metrics" />
+<section>
+  <div class="wrap">
+    <div class="eyebrow">02 — results</div>
+    <h2 class="section-title">Model Statistics</h2>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-card-label">Training Metrics</div>
+        <div class="img-wrap"><img src="images/brain-mri/training_metrics.png" alt="Training Metrics"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Model Accuracy</div>
+        <div class="img-wrap"><img src="images/brain-mri/accuracy_comparison.png" alt="Model Accuracy"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Confusion Matrix</div>
+        <div class="img-wrap"><img src="images/brain-mri/confusion_matrix.png" alt="Confusion Matrix"></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Per-Class Metrics</div>
+        <div class="img-wrap"><img src="images/brain-mri/per_class_metrics.png" alt="Per Tumor Class Metrics"></div>
+      </div>
     </div>
   </div>
+</section>
+
+<footer>
+  built by Manishika Balamurugan <span class="red">&middot;</span> 2026
+</footer>
 
 </body>
 </html>

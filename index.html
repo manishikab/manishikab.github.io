@@ -1,672 +1,1005 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Manishika Balamurugan's personal portfolio: Neuroscience + CS."
-    />
-    <meta name="author" content="Manishika Balamurugan" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manishika Balamurugan — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#fafaf8;
+    --panel:#ffffff;
+    --panel-border:#e2e0da;
+    --white:#111110;
+    --grey:#6b6b66;
+    --grey-dim:#a6a49c;
+    --red:#8a0e22;
+    --red-dim:#e8c6cb;
+  }
 
-    <title>Manishika Balamurugan</title>
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-    
-    <style>
+  html{scroll-behavior:smooth;}
 
-/* basic */
-      html {
-        scroll-behavior: smooth;
-      }
-      
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
 
-      body {
-        background-color: white;
-        color: #222;
-        font-family: "Inter", sans-serif;
-      }
+  ::selection{background:var(--red);color:#fdfaf8;}
 
-      h1 {
-        font-size: 5rem;
-        text-align: center;
-        color: #66101f;
-        margin-bottom: 1px;
-      }
+  a{color:inherit;text-decoration:none;}
 
-      h2 {
-        font-size: 2rem;
-        text-align: center;
-        color: #66101f;
-        margin-bottom: 1px;
-      }
+  .mono{font-family:'JetBrains Mono',monospace;}
 
-/* navigation bar */
-      a {
-        color: rgb(186, 35, 35);
-        text-decoration: none;
-        font-weight: bold;
-      }
+  /* ---------- layout shells ---------- */
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
 
-      .navbar {
-        background-color: #f5f5f5;
-        padding: 1rem;
-        display: flex;
-        gap: 1.5rem;
-        position: fixed;
-        width: 100%;
-        z-index: 1005;
-      }
+  section{padding:120px 0;border-bottom:1px solid var(--panel-border);}
+  section:last-of-type{border-bottom:none;}
 
-/* home */
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--red);
+    letter-spacing:.08em;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--red);
+    display:inline-block;
+  }
 
-      #particles-js {
-        position: absolute;
-        top: 0; 
-        left: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        z-index: 0;
-      }
+  h2.section-title{
+    font-size:clamp(28px,4vw,40px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin-bottom:56px;
+  }
 
-      .hero {
-        min-height: 100vh;
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: #fefefe;
-        box-sizing: border-box;
-        overflow: hidden;
-      }
+  /* ---------- nav ---------- */
+  /* ---------- scroll progress ---------- */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;width:0%;
+    background:var(--red);
+    z-index:200;
+    transition:width .1s linear;
+  }
 
-.hero h1 {
-  margin-top: 80px; 
-  z-index: 1000;
-  font-size: 3.5rem;
-  color: #222;
-}
+  /* ---------- scroll reveal ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
 
-.hero h2 {
-  margin-top: 1rem;
-  z-index: 1000;
-  font-size: 2rem;
-  color: #444;
-}
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(250,250,248,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+    max-width:1040px;
+  }
+  .nav-logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;}
+  .nav-logo .dot{color:var(--red);}
+  .nav-links{display:flex;gap:28px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--grey);}
+  .nav-links a{position:relative;padding:4px 0;transition:color .2s;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-links a::after{
+    content:"";position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--red);transition:width .25s;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;}
 
-/* other section headers */
-      .section-header {
-        margin-bottom: 2rem;
-        padding: 1rem;
-        font-size: 2rem;
-        text-align: center;
-        background-color: #66101f;
-        color: white;
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
-
-/* about me */
-      .section-header-first {
-        margin-top: 0rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        font-size: 2rem;
-        text-align: center;
-        background-color: #66101f;
-        color: white;
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
-
-      .intro p {
-        line-height: 1.5;
-      }
-
-      em {
-        color: rgb(186, 35, 35);
-        font-style: normal;
-        font-weight: bold;
-      }
-
-      .about-container {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        margin-right: 50px;
-        margin-left: 50px;
-        justify-content: center;
-      }
-
-      .profile-pic {
-        width: 500px;
-        height: auto;
-        object-fit: cover;
-      }
-      
-      .info-card {
-        background-color: #f9f9f9;
-        padding: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .info-card h3 {
-        color: #66101f;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-
-  /*MOBILE*/ 
-    @media screen and (max-width: 768px) {
-      .about-container {
-        padding: 1rem; 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 0; 
-        width: 100%; 
-        box-sizing: border-box; 
-      }
-
-      .profile-pic {
-        width: 100%;
-        height: auto;
-        margin-bottom: 1rem; 
-      }
-
-      .info-card {
-        box-sizing: border-box;
-      }
+  @media(max-width:720px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;
+      background:var(--black);
+      border-bottom:1px solid var(--panel-border);
+      flex-direction:column;gap:0;
+      max-height:0;overflow:hidden;
+      transition:max-height .3s ease;
     }
+    .nav-links.open{max-height:320px;}
+    .nav-links a{padding:16px 32px;border-bottom:1px solid var(--panel-border);width:100%;}
+    .nav-links a::after{display:none;}
+    .nav-toggle{display:block;}
+  }
 
+  /* ---------- hero ---------- */
+  #hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:72px;
+    padding-bottom:clamp(110px,12vw,150px);
+    border-bottom:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 400px;
+    gap:clamp(64px,8vw,110px);
+    align-items:center;
+  }
+  .hero-photo-col{
+    display:flex;
+    flex-direction:column;
+    height:auto;
+    align-self:center;
+  }
+  .hero-photo{
+    position:relative;
+    width:400px;
+    height:500px;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+  }
+  .hero-photo img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .hero-photo .corner{
+    position:absolute;width:28px;height:28px;
+    border:4px solid var(--red);
+  }
+  .hero-photo .corner.tl{top:-2px;left:-2px;border-right:none;border-bottom:none;}
+  .hero-photo .corner.tr{top:-2px;right:-2px;border-left:none;border-bottom:none;}
+  .hero-photo .corner.bl{bottom:-2px;left:-2px;border-right:none;border-top:none;}
+  .hero-photo .corner.br{bottom:-2px;right:-2px;border-left:none;border-top:none;}
+  .hero-photo .photo-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--grey-dim);
+    margin-top:10px;text-align:center;
+    flex-shrink:0;
+  }
+  .photo-fallback{
+    width:100%;height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;color:var(--grey-dim);
+    background:repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
+  }
+  .photo-fallback .icon{font-size:28px;}
+  .photo-fallback span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-align:center;padding:0 12px;}
 
-/* projects */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* maximum 3 per row */
-  gap: 2rem;
-  margin-top: 2rem;
-  padding: 0 2rem;       
-  max-width: 1200px;   
-  margin-left: auto;     
-  margin-right: auto;   
+  @media(max-width:900px){
+    .hero-grid{
+      grid-template-columns:minmax(0,1fr) 320px;
+      gap:44px;
+    }
+    .hero-photo{width:320px;height:420px;}
+    .tagline{white-space:normal;}
+  }
+
+  @media(max-width:720px){
+    #hero{
+      padding-top:72px;
+      padding-bottom:110px;
+    }
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo-col{height:auto;order:-1;margin-bottom:8px;}
+    .hero-photo{width:240px;height:240px;flex:none;margin:0 auto;}
+    .tagline{white-space:normal;}
+  }
+
+  h1.name{
+    font-size:clamp(44px,7vw,82px);
+    font-weight:800;
+    letter-spacing:-0.03em;
+    line-height:1.02;
+    margin-bottom:20px;
+  }
+  h1.name .accent{color:var(--red);}
+
+  .tagline{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(20px,1.7vw,18px);
+    line-height:1.6;
+    color:var(--grey);
+    max-width:760px;
+    margin-bottom:40px;
+    letter-spacing:-0.02em;
+    white-space:nowrap;
+  }
+  .tagline strong{
+    color:var(--white);
+    font-weight:700;
+  }
+  .tagline .tag-accent{
+    color:var(--red);
+    font-weight:700;
+  }
+
+  .hero-links{display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    padding:12px 20px;
+    border:1px solid var(--panel-border);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:border-color .2s, background .2s;
+  }
+  .btn:hover{border-color:var(--red);background:rgba(200,16,46,.08);}
+  .btn.primary{background:var(--red);border-color:var(--red);color:#fdfaf8;}
+  .btn.primary:hover{background:#6d0a1a;}
+  .btn .ph{color:var(--grey-dim);font-size:11px;}
+
+  /* ---------- eeg divider (hero signature element) ---------- */
+  .eeg-divider{
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:clamp(100px,16vw,190px);
+    overflow:hidden;
+    background:var(--black);
+  }
+  #eegCanvas{
+    display:block;
+    width:100%;
+    height:100%;
+  }
+
+  /* ---------- education ---------- */
+  .edu-card{
+    position:relative;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    padding:clamp(28px,4vw,42px);
+    overflow:hidden;
+  }
+  .edu-card::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;bottom:0;
+    width:4px;
+    background:var(--red);
+  }
+  .edu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:28px;
+    margin-bottom:30px;
+  }
+  .edu-kicker{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--red);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .edu-card h3{
+    font-size:clamp(22px,2.6vw,28px);
+    font-weight:800;
+    letter-spacing:-0.025em;
+    margin-bottom:9px;
+  }
+  .edu-card .school-meta{
+    color:var(--grey);
+    font-size:14px;
+    max-width:760px;
+  }
+  .gpa-tag{
+    flex-shrink:0;
+    min-width:112px;
+    padding:13px 16px 12px;
+    border:1px solid var(--red-dim);
+    background:rgba(138,14,34,.045);
+    text-align:center;
+  }
+  .gpa-tag .gpa-label{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--grey-dim);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .gpa-tag .gpa-value{
+    display:block;
+    font-size:20px;
+    font-weight:800;
+    color:var(--red);
+    letter-spacing:-0.02em;
+  }
+  .edu-section-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--grey-dim);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:13px;
+  }
+  .edu-section-label::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--panel-border);
+  }
+  .honors-list{
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px 28px;
+    font-size:14px;
+    color:var(--grey);
+    margin-bottom:30px;
+  }
+  .honors-list li{
+    position:relative;
+    padding-left:24px;
+    line-height:1.45;
+  }
+  .honors-list li::before{
+    content:"✦";
+    position:absolute;
+    left:0;
+    top:0;
+    color:var(--red);
+    font-size:13px;
+  }
+  .honors-list li:first-child{
+    color:var(--white);
+    font-weight:600;
+  }
+  .coursework{
+    padding-top:24px;
+    border-top:1px solid var(--panel-border);
+  }
+  .coursework-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .coursework-list span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--grey);
+    border:1px solid var(--panel-border);
+    background:var(--black);
+    padding:7px 10px;
+    transition:border-color .2s,color .2s,transform .2s;
+  }
+  .coursework-list span:hover{
+    border-color:var(--red-dim);
+    color:var(--white);
+    transform:translateY(-1px);
+  }
+
+  @media(max-width:720px){
+    .edu-top{flex-direction:column;}
+    .gpa-tag{align-self:flex-start;}
+    .honors-list{grid-template-columns:1fr;}
+  }
+
+  /* ---------- experience / research timeline ---------- */
+  .timeline{position:relative;}
+  .entry{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:32px;
+    padding:36px 0;
+    border-top:1px solid var(--panel-border);
+  }
+  .entry:first-child{border-top:none;}
+  .entry-date{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--grey-dim);
+    padding-top:4px;
+  }
+  .entry-body h3{font-size:20px;font-weight:700;margin-bottom:4px;}
+  .entry-role{color:var(--red);font-size:14px;font-weight:600;margin-bottom:2px;}
+  .entry-loc{color:var(--grey-dim);font-size:13px;margin-bottom:16px;}
+  .entry-body ul{list-style:none;font-size:14.5px;color:var(--grey);}
+  .entry-body ul li{padding:6px 0 6px 18px;position:relative;}
+  .entry-body ul li::before{content:"▹";position:absolute;left:0;color:var(--red);font-size:12px;top:8px;}
+
+  @media(max-width:640px){
+    .entry{grid-template-columns:1fr;gap:8px;}
+  }
+
+  /* ---------- projects grid ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:24px;
+  }
+  .project-card{
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    transition:border-color .25s, transform .25s;
+  }
+  .project-card:hover{border-color:var(--red);transform:translateY(-3px);}
+.project-thumb{
+  aspect-ratio:16/10;
+  overflow:hidden;              /* clip anything that doesn't fit */
+  background:
+    repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
+  border-bottom:1px solid var(--panel-border);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;
+  color:var(--grey-dim);
 }
 
-.project-card {
+.project-thumb img{
+  width:100%;
+  height:100%;
+  min-width:0;     /* override flex's default min-width:auto */
+  min-height:0;    /* override flex's default min-height:auto */
+  object-fit:cover;
+  display:block;
+  flex-shrink:0;
+}
   
-  background-color: #f9f9f9;
-  width: 100%; 
-  height: auto; 
-  display: flex;
-  flex-direction: column;
-  font-weight: normal;
-  color: #222;
-  transition: transform 0.2s ease;
+  .project-thumb .icon{font-size:22px;}
+.project-thumb .ph-label{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.05em;
 }
 
-      .project-card:hover {
-        transform: translateY(-4px);
-      }
-
-      .project-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-
-      .project-info {
-        padding: 1rem;
-      }
-
-      .project-info h3 {
-        font-size: 1.25rem;
-        color: #66101f;
-      }
-
-      .project-info p {
-        line-height: 1.5;
-      }
-
-      .note {
-        font-size: 0.9em;       
-        color: #666666;          
-        font-style: italic;      
-      }
-
-/*MOBILE*/ 
-@media screen and (max-width: 768px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    padding: 1rem;
+  .project-body{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .project-tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);
+    letter-spacing:.05em;
   }
+  .project-body h3{font-size:18px;font-weight:700;}
+  .project-body p{font-size:14px;color:var(--grey);flex:1;}
+  .project-links{display:flex;gap:14px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;}
+  .project-links a{color:var(--grey);border-bottom:1px solid var(--grey-dim);padding-bottom:2px;transition:color .2s,border-color .2s;}
+  .project-links a:hover{color:var(--red);border-color:var(--red);}
 
-  .project-card {
-    width: 100%;
-    max-width: 350px;
-    margin: 0;
-    height: auto;
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:32px;
   }
-
-  .project-card img {
-    height: 170px;
+  .skill-group .mono{font-size:12px;color:var(--red);letter-spacing:.06em;margin-bottom:14px;display:block;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    border:1px solid var(--panel-border);
+    padding:7px 12px;
+    color:var(--grey);
+    transition:border-color .2s,color .2s;
   }
-}
+  .chip:hover{border-color:var(--red);color:var(--white);}
 
-/* contact */
-      #contact {
-        margin-top: 3rem;
-        background-color: #f9f9f9;
-        align-items: center;
-        padding: 4rem;
-      }
+  /* ---------- contact / footer ---------- */
+  #contact{text-align:center;padding:140px 0;}
+  #contact .eyebrow{justify-content:center;}
+  #contact .eyebrow::before{display:none;}
+  #contact h2{
+    font-size:clamp(30px,5vw,52px);
+    font-weight:800;letter-spacing:-0.02em;
+    margin-bottom:24px;
+  }
+  #contact p{color:var(--grey);max-width:480px;margin:0 auto 40px;}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;}
 
-      .contact_links {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-      }
+  footer{
+    padding:32px;
+    text-align:center;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--grey-dim);
+  }
+  footer .red{color:var(--red);}
+</style>
+</head>
+<body>
 
-      .contact_links a {
-        background-color: #66101f;
-        color: white;
-        padding: 0.8rem 1.5rem;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s, transform 0.2s;
-      }
+<div id="progress"></div>
 
-      .contact_links a:hover {
-        transform: translateY(-2px);
-      }
+<header>
+  <nav class="wrap">
+    <div class="nav-logo">manishika<span class="dot">.</span>dev</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">home</a>
+      <a href="#education">education</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#research">research</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+</header>
 
-      .back-to-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background-color: #66101f;
-        color: white;
-        padding: 0.75rem 1.25rem;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.95rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s, transform 0.3s;
-        z-index: 999;
-      }
-
-      .back-to-top:hover {
-        opacity: 1;
-        transform: translateY(-3px);
-      }
-
-      @media screen and (max-width: 768px) {
-        .back-to-top {
-          right: 10px;
-          bottom: 10px;
-          padding: 0.5rem 1.5 rem;
-          font-size: 0.85rem;
-        }
-}
-
-    </style>
-  </head>
-
-<!-- HTML -->
-  <body>
-    <nav class="navbar">
-      <a href="#home">Home</a>
-      <a href="#about">About Me</a>
-      <a href="#my-work">My Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <header id="home" class="hero">
-      <div id="particles-js"></div>
-      <h1>Hi, I'm <em>Manishika</em></h1>
-      <h2>
-        I am an aspiring <span id="dynamic-text"></span><span class="cursor">|</span>
-      </h2>
-    </header>
-  
-    <section id="about" class="section">
-      <h2 class="section-header-first">ABOUT ME</h2>
-      <div class="about-container">
-        <img src="images/new_pfp.png" alt="Manishika Balamurugan" class="profile-pic" />
-        <div class="intro">
-
-          <div class="info-card">
-            <h3>Who I Am</h3>
-            <p>
-              I'm Manishika Balamurugan, a third-year student at the University
-              of Michigan, double majoring in
-              <strong>Biopsychology, Cognition, and Neuroscience</strong> and
-              <strong>Computer Science</strong>.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>What I Study</h3>
-            <p>
-              I'm interested in using
-              <strong>brain imaging techniques</strong> and
-              <strong>computational modeling methods</strong> to study
-              <em>neurodegenerative diseases</em> and explore possible pathways
-              for <em>neural repair</em>.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>What I Do</h3>
-            <p>
-              At the <strong>University of Michigan</strong>, I study
-              <em>neural dedifferentiation</em> in older adults who are either
-              healthy or have mild cognitive impairment. This summer, I'm
-              completing a research fellowship at the
-              <strong>University of Pittsburgh</strong>, where I'm contributing
-              to the development of a <em>new hippocampal model</em>.
-            </p>
-          </div>
-
-          <div class="info-card">
-            <h3>Where I’m Going</h3>
-            <p>
-              I'm seeking a <em>software engineering internship</em> to
-              strengthen my coding experience and complement my strong
-              background in research.
-            </p>
-          </div>
-
-          <a href="images/Manishika_Balamurugan_resume.pdf" target="_blank">
-            Looking for my resume?
-          </a>
+<!-- ================= home ================= -->
+<section id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 class="name">Manishika<br>Balamurugan</h1>
+        <p class="tagline">
+          <strong>Coder</strong> by trade. <strong>Researcher</strong> by design. <br>
+          <span class="tag-accent">Health tech</span> by purpose.
+        </p>
+        <div class="hero-links">
+          <a class="btn primary" href="mailto:mbala@umich.edu">Email</a>
+          <a class="btn" href="https://www.linkedin.com/in/manishikab/">LinkedIn <span class="ph"></span></a>
+          <a class="btn" href="https://github.com/manishikab">GitHub <span class="ph"></span></a>
+          <a class="btn" href="Balamurugan_Resume_Tech_2026.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>        </div>
+      </div>
+      <div class="hero-photo-col">
+        <div class="hero-photo">
+          <span class="corner tl"></span><span class="corner tr"></span>
+          <span class="corner bl"></span><span class="corner br"></span>
+          <img src="headshot.jpeg" alt="Manishika Balamurugan">
         </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section id="my-work" class="section">
-      <h2 class="section-header">MY WORK</h2>
+  <div class="eeg-divider" aria-hidden="true">
+    <canvas id="eegCanvas"></canvas>
+  </div>
+</section>
 
-      <div class="project-category">
-        <h2 class="category-header">Coding Projects</h2>
-        <div class="project-grid">
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">01 — education</div>
+    <h2 class="section-title">Education</h2>
 
+    <div class="edu-card reveal">
+      <div class="edu-top">
+        <div>
+          <div class="edu-kicker">Undergraduate · Expected May 2027</div>
+          <h3>University of Michigan — Ann Arbor</h3>
+          <div class="school-meta">B.S. Computer Science &amp; Biopsychology, Cognition, and Neuroscience</div>
+        </div>
+        <div class="gpa-tag">
+          <span class="gpa-label">GPA</span>
+          <span class="gpa-value">3.89 / 4.00</span>
+        </div>
+      </div>
 
-          <div class="project-card">
-           <img src="images/brain-mri/mriscan.png" alt="mri scan of brain with tumor" />
-           <div class="project-info">
-             <h3>Brain Tumor Detection & Classification Using Deep Learning</h3>
-             <p> A convolutional neural network to classify MRI scans into tumor and non-tumor categories with high accuracy.</p>
-                
-               <br />
-               📈 <a href="brain-ml.html" target="_blank">
-                 See model statistics
-               </a>
-               <br />
-               📊 <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data" target="_blank">
-                Explore the public dataset
-               </a>
-             </p>
-      
-           </div>
-         </div>
+      <div class="edu-section-label">Honors &amp; Distinctions</div>
+      <ul class="honors-list">
+        <li>Rogel Scholar (Full-Ride Scholarship)</li>
+        <li>William J. Branstrom Prize (Top 5%)</li>
+        <li>James B. Angell Scholar (5 Straight-A Terms)</li>
+        <li>Shining Student Tackling Advanced Research</li>
+        <li>University Honors</li>
+      </ul>
 
+      <div class="coursework">
+        <div class="edu-section-label">Selected Coursework</div>
+        <div class="coursework-list">
+          <span>Data Structures &amp; Algorithms</span>
+          <span>Discrete Math</span>
+          <span>Computer Organization</span>
+          <span>Foundations of CS</span>
+          <span>Machine Learning</span>
+          <span>Web Systems</span>
+          <span>Applied Linear Algebra</span>
+          <span>Statistics &amp; Data Analysis</span>
+          <span>Behavioral Neuroscience</span>
+          <span>Human Neuropsychology</span>
+          <span>Neural Circuits</span>
+          <span>Cognitive Science &amp; Generative AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="project-card">
-            <img src="images/student_coach/student_coach_ss.png" alt="Screenshot of Student Coach App" />
-            <div class="project-info">
-              <h3>AI-Powered Student Dashboard</h3>
-              <p>
-                 An AI-powered web dashboard to support students’ education, health, and wellness. Implemented an interactive AI coach using NLP to provide personalized tips and real-time chat guidance.
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">02 — experience</div>
+    <h2 class="section-title">Corporate Experience</h2>
 
-              </p>
-          
-              <p>
-                🌐 <a href="https://ai-student-coach-frontend.onrender.com/" target="_blank">
-                  View the site on Render
-                </a>
-              </p>
-            </div>
+    <div class="timeline">
+      <div class="entry reveal">
+        <div class="entry-date">May 2026 — Aug 2026</div>
+        <div class="entry-body">
+          <div class="entry-role">SDE Intern, Advanced Algorithms Team</div>
+          <h3>Sartorius</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Engineered 2 C++ pipelines to deploy pretrained ML models into production, connecting model inference to image fluorescence quantification and whole-image masking calculations through to the application layer.</li>
+            <li>Eliminated circular dependencies across internal team libraries by architecting a shared interface system of flattened DTOs for 17 analyses, improving build reliability and enabling independent cross-team development.</li>
+            <li>Redesigned a monolithic Qt image analysis tool into a modular MVC system with per-module controllers, decoupling UI (Qt Designer) from logic (Python) across 5 modules, and adding multithreading, cross-window state sync, and error handling.</li>
+            <li>Consolidated 7 fragmented Conda environments into a single modular environment, implementing conda-lock for reproducible builds and custom tooling for environment setup, sync, and validation in Python.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="section-title">Other Experience</h2>
+
+      <div class="entry reveal">
+        <div class="entry-date">Jun 2026 — Present</div>
+        <div class="entry-body">
+          <div class="entry-role">Project Lead</div>
+          <h3>Michigan Data Science Team</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Leading an EEG cognitive modeling project.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-date">Jan 2026 — Present</div>
+        <div class="entry-body">
+          <div class="entry-role">Sartorius Student Software Developer</div>
+          <h3>Multidisciplinary Design Program</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Remote lab monitoring and control system, SIL simulator for testing.</li>
+            <li>C++, Python, Qt, React</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-date">Jan 2026 — Present</div>
+        <div class="entry-body">
+          <div class="entry-role">Director of Correspondence</div>
+          <h3>Nu Rho Psi</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Executive board member for the university's neuroscience honor society chapter.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-date">Sep 2025 — Jan 2026</div>
+        <div class="entry-body">
+          <div class="entry-role">Web Engineer</div>
+          <h3>The Michigan Daily</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Created constructor to allow online newspaper game development by non-technical staff.</li>
+            <li>Typescript, Svelte</li>
+          </ul>
+        </div>
+      </div>
+
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">03 — projects</div>
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project-grid">
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+            <img src="images/aa.png" alt="AA logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · JAN – APR 2026</div>
+          <h3>American Airlines Sponsored Project</h3>
+          <p>Hybrid ML pipeline with Random Forest, XGBoost, and GenAI to minimize high-cost flight simulator cancellations from historical operational logs — 85.2% accuracy predicting sequence outcomes.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+            <img src="images/sartorius.png" alt="Sartorius logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · JAN – APR 2026</div>
+          <h3>Remote Monitoring and Control Platform for Biolab Equipment</h3>
+          <p>Sartorius sponsored project to develop a web-based platform for remote monitoring and control of biolab equipment.</p>
+          <div class="project-links">
+            <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/">More info →</a>
           </div>
-          
+        </div>
+      </div>
 
-          <div class="project-card">
-            <img src="images/face-rec/newfacerec.png" alt="Images of recognized face (John Doe) vs unrecognized face" />
-            <div class="project-info">
-              <h3>Face Recognition Attendance System</h3>
-              <p> A real-time attendance system that 
+      <div class="project-card reveal">
+        <div class="project-thumb">
+            <img src="images/gpt2.png" alt="GPT-2 logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · SEP – DEC 2025</div>
+          <h3>Replica of GPT-2</h3>
+          <p>GPT-2-style Transformer implemented from first principles in PyTorch — self-attention, multi-head causal attention, MLP blocks, and layer norm without high-level abstractions. Trained on Shakespeare &amp; Wikipedia corpora and benchmarked against pretrained GPT-2 weights.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/gpt-2">Code →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+         <div class="project-thumb">
+            <img src="images/student_coach_ss.png" alt="Student Dashboard logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
+          <h3>AI-Powered Student Dashboard</h3>
+          <p>Full-stack web app with FastAPI + React, integrating an NLP-based chatbot to answer student queries and generate personalized workflow recommendations. SQLite-backed REST APIs with optimized frontend state management for low-latency interaction.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/student-tracker">Code →</a>
+            <a href="https://ai-student-coach-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" >Live site →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="images/mriscan.png" alt="Brain Tumor Detection logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
+          <h3>Brain Tumor Detection & Classification Using Deep Learning</h3>
+          <p>A convolutional neural network to classify MRI scans into tumor and non-tumor categories with high accuracy.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/brain-mri-classifier">Code →</a>
+            <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data">Data →</a>
+            <a href="brain-ml.html">Model Statistics →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="images/face_rec.png" alt="Face Recognition Attendance System logo" >
+        </div>
+        <div class="project-body">
+          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
+          <h3>Face Recognition Attendance System</h3>
+          <p>A real-time attendance system that 
                   identifies individuals via webcam, 
                   logs attendance with timestamps in CSV format, 
                   and sends automated email alerts with snapshots of unknown faces.</p>
-                </a>
-                📺 <a href="face-recognition.html" target="_blank">
-                  Watch demo video
-                </a>
-              </p>
-            </div>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/face-recognition">Code →</a>
+            <a href="face-recognition.html">Demo →</a>
           </div>
-
-
-          <div class="project-card">
-            <img src="images/flight-app/flight_app_ss.png" alt="Screenshot of Flight Price Predictor app" />
-            <div class="project-info">
-              <h3>Flight Price Predictor</h3>
-              <p>
-                A web app built with Streamlit that predicts flight prices using a Random Forest Regressor. Users input features like departure city, arrival city, airline carrier, and travel quarter.
-              </p>
-          
-              <p>
-                🌐 <a href="https://manishikab-flight-price-prediction-app-model-ognglx.streamlit.app/" target="_blank">
-                  Try the app on Streamlit
-                </a>
-              </p>
-            </div>
-          </div>
-          
-          <div class="project-card">
-            <img src="images/cat-game/cat_game_ss.png" alt="Screenshot of Catch the Cat game" />
-            <div class="project-info">
-              <h3>Catch The Cat!</h3>
-              <p>A 2D puzzle game developed using C++ and SFML.</p>
-          
-              <p>
-                🎮 <a href="https://manishikab.itch.io/catch-the-cat" target="_blank">
-                  Download on itch.io
-                </a>
-                <br />
-                📺 <a href="images/cat-game/Gameplay_for_portfolio.mp4" target="_blank">
-                  Watch gameplay video
-                </a>
-              </p>
-          
-              <p class="note">
-                ⚠️ Note: macOS may prevent unsigned apps from running. The video above shows full gameplay without requiring installation.
-              </p>
-            </div>
-          </div>
-
-        </div>
         </div>
       </div>
 
-      <div class="project-category">
-        <h2 class="category-header">Neuroscience Projects</h2>
-        <div class="project-grid">
-
-          <div class="project-card">
-            <img
-              src="images/neuro-projects/tractography.png"
-              alt="Tractography image of hippocampus"
-            />
-            <div class="project-info">
-              <h3>Pitt Research Fellowship (2025)</h3>
-              <p>Developing a new model of the hippocampus for use in clinical interventions of several psychiatric and neurological disorders.</p>
-          
-              <p class="note">
-                📄 Results pending publication!
-              </p>
-            </div>
-          </div>
-
-    
-          <div class="project-card">
-            <img
-              src="images/neuro-projects/left hemisphere (1).png"
-              alt="fMRI image of left hemisphere activation"
-            />
-            <div class="project-info">
-              <h3>UM Undergraduate Research Symposium (2025)</h3>
-              <p>
-                Presented research on neural dedifferentiation and GABA differences in healthy vs. MCI older adults at the University of Michigan's 2025 Undergraduate Research Symposium.
-              </p>
-          
-              <p>
-                📄 <a href="images/neuro-projects/UROP Symposium 2025.pdf" target="_blank">
-                  View full poster (PDF)
-                </a>
-              </p>
-            </div>
-          </div>
-
-          
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="images/cat_game_ss.png" alt="Catch The Cat! logo" >
         </div>
-        
+        <div class="project-body">
+          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
+          <h3>Catch The Cat!</h3>
+            <p>A  2D puzzle game developed using C++ and SFML.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/trap_cat_game">Code →</a>
+            <a href="images/cat-game/Gameplay_for_portfolio.mp4">Demo →</a>
+            <a href="https://manishikab.itch.io/catch-the-cat">Download →</a>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <section id="contact" class="section">
-      <div class="contact_links">
-        <a href="mailto:mbala@umich.edu">Email</a>
-        <a
-          href="https://www.linkedin.com/in/manishika-balamurugan-7006ba2b1/"
-          target="_blank"
-          >LinkedIn</a
-        >
-        <a href="https://github.com/manishikab" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section id="research">
+  <div class="wrap">
+    <div class="eyebrow">04 — research</div>
+    <h2 class="section-title">Research</h2>
+
+    <div class="timeline">
+      <div class="entry reveal">
+        <div class="entry-date">Aug 2024 — Present</div>
+        <div class="entry-body">
+          <div class="entry-role">Research Assistant</div>
+          <h3>Computational &amp; Cognitive Neuroscience Lab, University of Michigan</h3>
+          <div class="entry-loc">Ann Arbor, MI</div>
+          <ul>
+            <li>Build R pipelines for statistical analysis and visualization of multimodal neural and behavioral data across hundreds of samples.</li>
+            <li>Perform quality control on MRI/MRS data and manual FreeSurfer segmentation edits on structural brain images.</li>
+            <li>Conduct behavioral data entry and preprocessing to support longitudinal cognitive decline analyses.</li>
+            <li>Poster (UM Undergraduate Research Symposium, 2024): "Investigating Age-Related Neural Dedifferentiation Longitudinally and in Mild Cognitive Impairment."</li>
+            <li>Honors Thesis (submission: April 2027): "Predicting Cognitive Decline from Multimodal Neural and Behavioral Data: A Machine Learning Approach to Age-Related Neural Dedifferentiation."</li>
+          </ul>
+          <div class="project-links" style="margin-top:14px;">
+            <a href="images/neuro-projects/UROP Symposium 2025.pdf">Poster PDF →</a>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <a href="#home" class="back-to-top">↑ Back to Top</a>
+      <div class="entry reveal">
+        <div class="entry-date">May 2025 — Aug 2025</div>
+        <div class="entry-body">
+          <div class="entry-role">Research Fellow</div>
+          <h3>Regenerative Imaging Laboratory, University of Pittsburgh</h3>
+          <div class="entry-loc">Pittsburgh, PA</div>
+          <ul>
+            <li>Analyzed hippocampal connectivity in 18 brains using diffusion MRI and tractography, performing segmentation in DSI Studio.</li>
+            <li>Applied k-means clustering in MATLAB to model neural connection patterns, identifying structural network trends.</li>
+            <li>Final Presentation (Center for Neuroscience, 2025): "Segmentation of hippocampal dentations and virtual dissection of their connectome using mesoscale diffusion MRI."</li>
+          </ul>
+          <h5>Results pending publication →</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-      // JS
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">05 — skills</div>
+    <h2 class="section-title">Technical Skills</h2>
 
-      // home typing animation
-      const roles = [
-        "neuroscientist",
-        "researcher",
-        "computer scientist",
-        "discoverer",
-      ];
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <span class="mono">LANGUAGES</span>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">JavaScript</span>
+          <span class="chip">TypeScript</span><span class="chip">SQL</span><span class="chip">C</span><span class="chip">R</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <span class="mono">FRAMEWORKS / LIBRARIES</span>
+        <div class="chip-row">
+          <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">PyTorch</span>
+          <span class="chip">scikit-learn</span><span class="chip">Qt</span><span class="chip">OpenCV</span><span class="chip">Svelte</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <span class="mono">TOOLS</span>
+        <div class="chip-row">
+          <span class="chip">Docker</span><span class="chip">Git</span><span class="chip">Conda</span>
+          <span class="chip">MATLAB</span><span class="chip">DSI Studio</span><span class="chip">Streamlit</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <span class="mono">ML / DATA SCIENCE</span>
+        <div class="chip-row">
+          <span class="chip">Transformers</span><span class="chip">CNNs</span><span class="chip">ResNet</span>
+          <span class="chip">Random Forest</span><span class="chip">XGBoost</span><span class="chip">k-means</span><span class="chip">Transfer Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      let index = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      const target = document.getElementById("dynamic-text");
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">06 — contact</div>
+    <h2>Let's build something.</h2>
+    <p>Open to SWE, ML, and research opportunities.</p>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:mbala@umich.edu">✉ mbala@umich.edu</a>
+      <a class="btn" href="https://www.linkedin.com/in/manishikab">in/ LinkedIn</a>
+    </div>
+  </div>
+</section>
 
-      function typeEffect() {
-        const current = roles[index];
-        if (isDeleting) {
-          target.textContent = current.substring(0, charIndex--);
-          if (charIndex < 0) {
-            isDeleting = false;
-            index = (index + 1) % roles.length;
-            setTimeout(typeEffect, 300);
-            return;
-          }
-        } else {
-          target.textContent = current.substring(0, charIndex++);
-          if (charIndex > current.length) {
-            isDeleting = true; 
-            setTimeout(typeEffect, 1000);
-            return;
-          }
-        }
-        setTimeout(typeEffect, 100);
+<footer>
+  built by Manishika Balamurugan <span class="red">·</span> 2026
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll progress bar
+  const progress = document.getElementById('progress');
+  function updateProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // eeg waveform — organic, varying-amplitude scan line
+  (function(){
+    const canvas = document.getElementById('eegCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width, height, dpr;
+
+    function resize(){
+      dpr = window.devicePixelRatio || 1;
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const strokeColor = '#8a0e22';
+    const mid = () => height / 2;
+    const step = 3;
+    const SPATIAL_FREQ = 0.045; // wave tightness — controls the bursty shape, independent of speed
+    const TIME_SPEED = 0.0045; // radians/ms — lower = slower drift, doesn't affect wave shape
+
+    function draw(t){
+      ctx.clearRect(0, 0, width, height);
+      ctx.beginPath();
+      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = strokeColor;
+      ctx.globalAlpha = 0.55;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+
+      const m = mid();
+      const timePhase = t * TIME_SPEED;
+      for (let x = -step; x <= width + step; x += step){
+        const p = x * SPATIAL_FREQ + timePhase;
+        // slow envelope creates calm stretches punctuated by bursts
+        const envelope = 0.3 + 0.7 * Math.pow(Math.abs(Math.sin(p * 0.09)), 1.6);
+        const y = m
+          + envelope * (
+              Math.sin(p * 1.0) * (height * 0.16)
+            + Math.sin(p * 2.4 + 1.3) * (height * 0.09)
+            + Math.sin(p * 0.55 + 0.6) * (height * 0.05)
+          );
+        if (x === -step) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
+      ctx.stroke();
 
-      typeEffect();
-    </script>
+      if (!prefersReduced) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(prefersReduced ? () => draw(0) : draw);
+  })();
 
-    <style>
-      
-      #dynamic-text {
-        color: rgb(186, 35, 35);
-        font-weight: bold;
-      }
-
-      .cursor {
-        margin-left: 2px;
-        animation: blink 1s infinite;
-      }
-
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-      }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-      // home background particle animation
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 50 },
-          size: { value: 3 },
-          color: { value: "#66101f" },
-          line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#66101f",
-            opacity: 0.5,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 2,
-          },
-        },
-        interactivity: {
-          events: {
-            onhover: { enable: true, mode: "repulse" },
-          },
-        },
-      });
-    </script>
-
-    <script>
-      // back to top button at bottom
-      const backToTop = document.querySelector(".back-to-top");
-
-      window.addEventListener("scroll", () => {
-        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
-
-        if (nearBottom) {
-          backToTop.style.display = "block";
-          backToTop.style.opacity = "0.8";
-          backToTop.style.pointerEvents = "auto";
-        } else {
-          backToTop.style.opacity = "0";
-          backToTop.style.pointerEvents = "none";
+  // scroll reveal
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
         }
       });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
 
-    </script>
-  </body>
+</script>
+
+</body>
 </html>
