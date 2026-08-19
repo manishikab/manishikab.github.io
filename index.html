@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manishika Balamurugan — Portfolio</title>
+
+<meta name="description" content="Manishika Balamurugan — CS & Neuroscience student at the University of Michigan building at the intersection of machine learning and health tech. SWE @ Sartorius, research in computational neuroscience.">
+<meta property="og:title" content="Manishika Balamurugan — Portfolio">
+<meta property="og:description" content="CS & Neuroscience student at the University of Michigan building at the intersection of machine learning and health tech.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="headshot.jpeg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -12,8 +22,8 @@
     --panel:#ffffff;
     --panel-border:#e2e0da;
     --white:#111110;
-    --grey:#6b6b66;
-    --grey-dim:#a6a49c;
+    --grey:#454540;
+    --grey-dim:#7a786f;
     --red:#8a0e22;
     --red-dim:#e8c6cb;
   }
@@ -44,21 +54,23 @@
 
   .eyebrow{
     font-family:'JetBrains Mono',monospace;
-    font-size:13px;
+    font-size:22px;
+    font-weight:700;
     color:var(--red);
-    letter-spacing:.08em;
+    letter-spacing:.03em;
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:18px;
+    gap:14px;
+    margin-bottom:48px;
   }
   .eyebrow::before{
     content:"";
-    width:22px;height:1px;
+    width:34px;height:2px;
     background:var(--red);
     display:inline-block;
   }
 
+  /* legacy — no longer used for section headers, kept for safety */
   h2.section-title{
     font-size:clamp(28px,4vw,40px);
     font-weight:800;
@@ -66,7 +78,26 @@
     margin-bottom:56px;
   }
 
-  /* ---------- nav ---------- */
+  /* subsection label used within a section (e.g. Corporate / Other Experience) */
+  .subhead{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    font-weight:700;
+    color:var(--red);
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin:0 0 24px;
+  }
+  .subhead::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--panel-border);
+  }
+
   /* ---------- scroll progress ---------- */
   #progress{
     position:fixed;top:0;left:0;height:3px;width:0%;
@@ -122,7 +153,7 @@
       max-height:0;overflow:hidden;
       transition:max-height .3s ease;
     }
-    .nav-links.open{max-height:320px;}
+    .nav-links.open{max-height:360px;}
     .nav-links a{padding:16px 32px;border-bottom:1px solid var(--panel-border);width:100%;}
     .nav-links a::after{display:none;}
     .nav-toggle{display:block;}
@@ -171,20 +202,6 @@
   .hero-photo .corner.tr{top:-2px;right:-2px;border-left:none;border-bottom:none;}
   .hero-photo .corner.bl{bottom:-2px;left:-2px;border-right:none;border-top:none;}
   .hero-photo .corner.br{bottom:-2px;right:-2px;border-left:none;border-top:none;}
-  .hero-photo .photo-label{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;color:var(--grey-dim);
-    margin-top:10px;text-align:center;
-    flex-shrink:0;
-  }
-  .photo-fallback{
-    width:100%;height:100%;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:8px;color:var(--grey-dim);
-    background:repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
-  }
-  .photo-fallback .icon{font-size:28px;}
-  .photo-fallback span{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em;text-align:center;padding:0 12px;}
 
   @media(max-width:900px){
     .hero-grid{
@@ -221,7 +238,7 @@
     line-height:1.6;
     color:var(--grey);
     max-width:760px;
-    margin-bottom:40px;
+    margin-bottom:28px;
     letter-spacing:-0.02em;
     white-space:nowrap;
   }
@@ -232,6 +249,47 @@
   .tagline .tag-accent{
     color:var(--red);
     font-weight:700;
+  }
+
+  /* ---------- about blurb ---------- */
+  .about-blurb{
+    font-size:15.5px;
+    line-height:1.65;
+    color:var(--white);
+    max-width:520px;
+    margin-bottom:24px;
+    padding-left:18px;
+    border-left:2px solid var(--red);
+  }
+  .about-blurb strong{
+    color:var(--red);
+    font-weight:700;
+  }
+
+  /* ---------- currently line ---------- */
+  .currently{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--grey);
+    padding:8px 14px;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+  }
+  .currently .dot-live{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--red);
+    flex-shrink:0;
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.35;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .currently .dot-live{animation:none;}
   }
 
   .hero-links{display:flex;flex-wrap:wrap;gap:14px;}
@@ -267,7 +325,7 @@
     position:relative;
     border:1px solid var(--panel-border);
     background:var(--panel);
-    padding:clamp(28px,4vw,42px);
+    padding:clamp(24px,3.5vw,36px);
     overflow:hidden;
   }
   .edu-card::before{
@@ -282,7 +340,7 @@
     justify-content:space-between;
     align-items:flex-start;
     gap:28px;
-    margin-bottom:30px;
+    margin-bottom:22px;
   }
   .edu-kicker{
     font-family:'JetBrains Mono',monospace;
@@ -303,29 +361,25 @@
     font-size:14px;
     max-width:760px;
   }
-  .gpa-tag{
+  .resume-chip{
     flex-shrink:0;
-    min-width:112px;
-    padding:13px 16px 12px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--red);
     border:1px solid var(--red-dim);
     background:rgba(138,14,34,.045);
-    text-align:center;
+    padding:11px 18px;
+    white-space:nowrap;
+    transition:border-color .2s, background .2s;
   }
-  .gpa-tag .gpa-label{
-    display:block;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;
-    color:var(--grey-dim);
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:2px;
-  }
-  .gpa-tag .gpa-value{
-    display:block;
-    font-size:20px;
-    font-weight:800;
-    color:var(--red);
-    letter-spacing:-0.02em;
+  .resume-chip:hover{border-color:var(--red);background:rgba(138,14,34,.09);}
+  .edu-note{
+    font-size:13.5px;
+    font-style:italic;
+    color:var(--grey);
+    max-width:600px;
+    margin-top:10px;
   }
   .edu-section-label{
     display:flex;
@@ -333,7 +387,8 @@
     gap:10px;
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
-    color:var(--grey-dim);
+    font-weight:700;
+    color:var(--white);
     letter-spacing:.08em;
     text-transform:uppercase;
     margin-bottom:13px;
@@ -351,7 +406,7 @@
     gap:10px 28px;
     font-size:14px;
     color:var(--grey);
-    margin-bottom:30px;
+    margin-bottom:26px;
   }
   .honors-list li{
     position:relative;
@@ -366,13 +421,19 @@
     color:var(--red);
     font-size:13px;
   }
-  .honors-list li:first-child{
-    color:var(--white);
-    font-weight:600;
-  }
   .coursework{
-    padding-top:24px;
-    border-top:1px solid var(--panel-border);
+    padding-top:0;
+  }
+  .coursework-group{margin-bottom:16px;}
+  .coursework-group:last-child{margin-bottom:0;}
+  .coursework-cat{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    color:var(--red);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:9px;
   }
   .coursework-list{
     display:flex;
@@ -396,7 +457,7 @@
 
   @media(max-width:720px){
     .edu-top{flex-direction:column;}
-    .gpa-tag{align-self:flex-start;}
+    .resume-chip{align-self:flex-start;}
     .honors-list{grid-template-columns:1fr;}
   }
 
@@ -427,6 +488,16 @@
   }
 
   /* ---------- projects grid ---------- */
+  .projects-subhead{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--grey-dim);
+    letter-spacing:.08em;text-transform:uppercase;
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 20px;
+  }
+  .projects-subhead::after{content:"";height:1px;flex:1;background:var(--panel-border);}
+  .projects-subhead:not(:first-child){margin-top:50px;}
+
   .project-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -440,32 +511,67 @@
     transition:border-color .25s, transform .25s;
   }
   .project-card:hover{border-color:var(--red);transform:translateY(-3px);}
-.project-thumb{
-  aspect-ratio:16/10;
-  overflow:hidden;              /* clip anything that doesn't fit */
-  background:
-    repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
-  border-bottom:1px solid var(--panel-border);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:8px;
-  color:var(--grey-dim);
-}
 
-.project-thumb img{
-  width:100%;
-  height:100%;
-  min-width:0;     /* override flex's default min-width:auto */
-  min-height:0;    /* override flex's default min-height:auto */
-  object-fit:cover;
-  display:block;
-  flex-shrink:0;
-}
-  
+  /* featured (flagship) project variant — spans full width, side-by-side layout */
+  .project-grid.featured-grid{
+    grid-template-columns:1fr;
+    gap:24px;
+    margin-bottom:24px;
+  }
+  .project-card.featured{
+    flex-direction:row;
+  }
+  .project-card.featured .project-thumb{
+    width:42%;
+    flex-shrink:0;
+    aspect-ratio:auto;
+    border-bottom:none;
+    border-right:1px solid var(--panel-border);
+  }
+  .project-card.featured .project-body{padding:32px;}
+  .project-card.featured .project-body h3{font-size:22px;}
+  .project-card.featured .project-body p{font-size:14.5px;}
+  .featured-badge{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--red);
+    border:1px solid var(--red-dim);
+    background:rgba(138,14,34,.06);
+    padding:4px 9px;
+    display:inline-flex;align-items:center;gap:5px;
+    align-self:flex-start;
+  }
+  @media(max-width:720px){
+    .project-card.featured{flex-direction:column;}
+    .project-card.featured .project-thumb{width:100%;aspect-ratio:16/10;border-right:none;border-bottom:1px solid var(--panel-border);}
+  }
+
+  .project-thumb{
+    aspect-ratio:16/10;
+    overflow:hidden;
+    background:
+      repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
+    border-bottom:1px solid var(--panel-border);
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:8px;
+    color:var(--grey-dim);
+  }
+
+  .project-thumb img{
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+    object-fit:cover;
+    display:block;
+    flex-shrink:0;
+  }
+
   .project-thumb .icon{font-size:22px;}
-.project-thumb .ph-label{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  letter-spacing:.05em;
-}
+  .project-thumb .ph-label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.05em;
+  }
 
   .project-body{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;}
   .project-tag{
@@ -474,9 +580,32 @@
   }
   .project-body h3{font-size:18px;font-weight:700;}
   .project-body p{font-size:14px;color:var(--grey);flex:1;}
-  .project-links{display:flex;gap:14px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;}
+  .project-links{display:flex;gap:14px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;flex-wrap:wrap;}
   .project-links a{color:var(--grey);border-bottom:1px solid var(--grey-dim);padding-bottom:2px;transition:color .2s,border-color .2s;}
   .project-links a:hover{color:var(--red);border-color:var(--red);}
+
+  /* ---------- publications ---------- */
+  .pub-list{display:flex;flex-direction:column;}
+  .pub-entry{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:28px;
+    padding:26px 0;
+    border-top:1px solid var(--panel-border);
+  }
+  .pub-entry:first-child{border-top:none;}
+  .pub-type{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--red);
+    letter-spacing:.08em;text-transform:uppercase;
+    padding-top:2px;
+  }
+  .pub-title{font-size:15.5px;font-weight:600;margin-bottom:4px;line-height:1.4;}
+  .pub-meta{font-size:13px;color:var(--grey-dim);margin-bottom:8px;}
+  .pub-entry .project-links{margin-top:2px;}
+  @media(max-width:640px){
+    .pub-entry{grid-template-columns:1fr;gap:6px;}
+  }
 
   /* ---------- skills ---------- */
   .skills-grid{
@@ -532,6 +661,7 @@
       <a href="#experience">experience</a>
       <a href="#projects">projects</a>
       <a href="#research">research</a>
+      <a href="#publications">publications</a>
       <a href="#skills">skills</a>
       <a href="#contact">contact</a>
     </div>
@@ -546,13 +676,19 @@
         <h1 class="name">Manishika<br>Balamurugan</h1>
         <p class="tagline">
           <strong>Coder</strong> by trade. <strong>Researcher</strong> by design. <br>
-          <span class="tag-accent">Health tech</span> by purpose.
+          <span class="tag-accent">Health tech enthusiast</span> by purpose.
         </p>
-        <div class="hero-links">
-          <a class="btn primary" href="mailto:mbala@umich.edu">Email</a>
-          <a class="btn" href="https://www.linkedin.com/in/manishikab/">LinkedIn <span class="ph"></span></a>
-          <a class="btn" href="https://github.com/manishikab">GitHub <span class="ph"></span></a>
-          <a class="btn" href="Balamurugan_Resume_Tech_2026.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>        </div>
+
+        <p class="about-blurb"> I started out fascinated by the brain, not by code. But the more I studied cognition,
+          the more I realized how little we truly understand about how the brain works.
+          To get better answers, we need better tools.
+          <strong>That’s what I’m building.</strong>
+        </p>
+
+        <div class="currently mono">
+          <span class="dot-live"></span>
+          Currently: Leading an EEG cognitive modeling project for students @ The Michigan Data Science Team
+        </div>
       </div>
       <div class="hero-photo-col">
         <div class="hero-photo">
@@ -573,24 +709,20 @@
 <section id="education">
   <div class="wrap">
     <div class="eyebrow">01 — education</div>
-    <h2 class="section-title">Education</h2>
 
     <div class="edu-card reveal">
       <div class="edu-top">
         <div>
           <div class="edu-kicker">Undergraduate · Expected May 2027</div>
           <h3>University of Michigan — Ann Arbor</h3>
-          <div class="school-meta">B.S. Computer Science &amp; Biopsychology, Cognition, and Neuroscience</div>
+          <div class="school-meta">B.S. Computer Science &amp; Biopsychology, Cognition, and Neuroscience · GPA 3.89&thinsp;/&thinsp;4.00</div>
         </div>
-        <div class="gpa-tag">
-          <span class="gpa-label">GPA</span>
-          <span class="gpa-value">3.89 / 4.00</span>
-        </div>
+        <a class="resume-chip" href="Balamurugan_Resume_Tech_2026.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) →</a>
       </div>
 
       <div class="edu-section-label">Honors &amp; Distinctions</div>
       <ul class="honors-list">
-        <li>Rogel Scholar (Full-Ride Scholarship)</li>
+        <li>Rogel Scholar (Full-Ride Merit Scholarship)</li>
         <li>William J. Branstrom Prize (Top 5%)</li>
         <li>James B. Angell Scholar (5 Straight-A Terms)</li>
         <li>Shining Student Tackling Advanced Research</li>
@@ -599,19 +731,27 @@
 
       <div class="coursework">
         <div class="edu-section-label">Selected Coursework</div>
-        <div class="coursework-list">
-          <span>Data Structures &amp; Algorithms</span>
-          <span>Discrete Math</span>
-          <span>Computer Organization</span>
-          <span>Foundations of CS</span>
-          <span>Machine Learning</span>
-          <span>Web Systems</span>
-          <span>Applied Linear Algebra</span>
-          <span>Statistics &amp; Data Analysis</span>
-          <span>Behavioral Neuroscience</span>
-          <span>Human Neuropsychology</span>
-          <span>Neural Circuits</span>
-          <span>Cognitive Science &amp; Generative AI</span>
+        <div class="coursework-group">
+          <span class="coursework-cat">CS &amp; Math</span>
+          <div class="coursework-list">
+            <span>Data Structures &amp; Algorithms</span>
+            <span>Discrete Math</span>
+            <span>Computer Organization</span>
+            <span>Foundations of CS</span>
+            <span>Machine Learning</span>
+            <span>Web Systems</span>
+            <span>Applied Linear Algebra</span>
+            <span>Statistics &amp; Data Analysis</span>
+          </div>
+        </div>
+        <div class="coursework-group">
+          <span class="coursework-cat">Neuroscience &amp; Cognition</span>
+          <div class="coursework-list">
+            <span>Behavioral Neuroscience</span>
+            <span>Human Neuropsychology</span>
+            <span>Neural Circuits</span>
+            <span>Cognitive Science &amp; Generative AI</span>
+          </div>
         </div>
       </div>
     </div>
@@ -622,8 +762,8 @@
 <section id="experience">
   <div class="wrap">
     <div class="eyebrow">02 — experience</div>
-    <h2 class="section-title">Corporate Experience</h2>
 
+    <h3 class="subhead">Corporate Experience</h3>
     <div class="timeline">
       <div class="entry reveal">
         <div class="entry-date">May 2026 — Aug 2026</div>
@@ -639,9 +779,10 @@
           </ul>
         </div>
       </div>
+    </div>
 
-      <h2 class="section-title">Other Experience</h2>
-
+    <h3 class="subhead" style="margin-top:56px;">Other Experience</h3>
+    <div class="timeline">
       <div class="entry reveal">
         <div class="entry-date">Jun 2026 — Present</div>
         <div class="entry-body">
@@ -691,7 +832,7 @@
           </ul>
         </div>
       </div>
-
+    </div>
   </div>
 </section>
 
@@ -699,7 +840,45 @@
 <section id="projects">
   <div class="wrap">
     <div class="eyebrow">03 — projects</div>
-    <h2 class="section-title">Projects</h2>
+
+    <!-- Flagship projects — given more room to breathe -->
+    <div class="project-grid featured-grid">
+
+      <div class="project-card featured reveal">
+        <div class="project-thumb">
+          <img src="images/mriscan.png" alt="Brain Tumor Detection logo">
+        </div>
+        <div class="project-body">
+          <span class="featured-badge">★ flagship</span>
+          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
+          <h3>Brain Tumor Detection &amp; Classification Using Deep Learning</h3>
+          <p>A convolutional neural network trained to classify MRI scans into tumor and non-tumor categories with high accuracy, with per-class breakdowns across glioma, meningioma, pituitary, and normal scans.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/brain-mri-classifier">Code →</a>
+            <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data">Data →</a>
+            <a href="brain-mri.html">Model statistics →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card featured reveal">
+        <div class="project-thumb">
+          <img src="images/gpt2.png" alt="GPT-2 logo">
+        </div>
+        <div class="project-body">
+          <span class="featured-badge">★ flagship</span>
+          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · SEP – DEC 2025</div>
+          <h3>Replica of GPT-2</h3>
+          <p>GPT-2-style Transformer implemented from first principles in PyTorch — self-attention, multi-head causal attention, MLP blocks, and layer norm without high-level abstractions. Trained on Shakespeare &amp; Wikipedia corpora and benchmarked against pretrained GPT-2 weights.</p>
+          <div class="project-links">
+            <a href="https://github.com/manishikab/gpt-2">Code →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="projects-subhead">other projects</div>
 
     <div class="project-grid">
 
@@ -729,20 +908,6 @@
       </div>
 
       <div class="project-card reveal">
-        <div class="project-thumb">
-            <img src="images/gpt2.png" alt="GPT-2 logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · SEP – DEC 2025</div>
-          <h3>Replica of GPT-2</h3>
-          <p>GPT-2-style Transformer implemented from first principles in PyTorch — self-attention, multi-head causal attention, MLP blocks, and layer norm without high-level abstractions. Trained on Shakespeare &amp; Wikipedia corpora and benchmarked against pretrained GPT-2 weights.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/gpt-2">Code →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
          <div class="project-thumb">
             <img src="images/student_coach_ss.png" alt="Student Dashboard logo" >
         </div>
@@ -759,34 +924,18 @@
 
       <div class="project-card reveal">
         <div class="project-thumb">
-          <img src="images/mriscan.png" alt="Brain Tumor Detection logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
-          <h3>Brain Tumor Detection & Classification Using Deep Learning</h3>
-          <p>A convolutional neural network to classify MRI scans into tumor and non-tumor categories with high accuracy.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/brain-mri-classifier">Code →</a>
-            <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data">Data →</a>
-            <a href="brain-ml.html">Model Statistics →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb">
           <img src="images/face_rec.png" alt="Face Recognition Attendance System logo" >
         </div>
         <div class="project-body">
           <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
           <h3>Face Recognition Attendance System</h3>
-          <p>A real-time attendance system that 
-                  identifies individuals via webcam, 
-                  logs attendance with timestamps in CSV format, 
+          <p>A real-time attendance system that
+                  identifies individuals via webcam,
+                  logs attendance with timestamps in CSV format,
                   and sends automated email alerts with snapshots of unknown faces.</p>
           <div class="project-links">
             <a href="https://github.com/manishikab/face-recognition">Code →</a>
-            <a href="face-recognition.html">Demo →</a>
+            <a href="face-rec.html">Demo →</a>
           </div>
         </div>
       </div>
@@ -815,7 +964,6 @@
 <section id="research">
   <div class="wrap">
     <div class="eyebrow">04 — research</div>
-    <h2 class="section-title">Research</h2>
 
     <div class="timeline">
       <div class="entry reveal">
@@ -828,12 +976,7 @@
             <li>Build R pipelines for statistical analysis and visualization of multimodal neural and behavioral data across hundreds of samples.</li>
             <li>Perform quality control on MRI/MRS data and manual FreeSurfer segmentation edits on structural brain images.</li>
             <li>Conduct behavioral data entry and preprocessing to support longitudinal cognitive decline analyses.</li>
-            <li>Poster (UM Undergraduate Research Symposium, 2024): "Investigating Age-Related Neural Dedifferentiation Longitudinally and in Mild Cognitive Impairment."</li>
-            <li>Honors Thesis (submission: April 2027): "Predicting Cognitive Decline from Multimodal Neural and Behavioral Data: A Machine Learning Approach to Age-Related Neural Dedifferentiation."</li>
           </ul>
-          <div class="project-links" style="margin-top:14px;">
-            <a href="images/neuro-projects/UROP Symposium 2025.pdf">Poster PDF →</a>
-          </div>
         </div>
       </div>
 
@@ -846,9 +989,43 @@
           <ul>
             <li>Analyzed hippocampal connectivity in 18 brains using diffusion MRI and tractography, performing segmentation in DSI Studio.</li>
             <li>Applied k-means clustering in MATLAB to model neural connection patterns, identifying structural network trends.</li>
-            <li>Final Presentation (Center for Neuroscience, 2025): "Segmentation of hippocampal dentations and virtual dissection of their connectome using mesoscale diffusion MRI."</li>
           </ul>
-          <h5>Results pending publication →</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow">05 — publications &amp; talks</div>
+
+    <div class="pub-list">
+      <div class="pub-entry reveal">
+        <div class="pub-type">Thesis</div>
+        <div>
+          <div class="pub-title">Predicting Cognitive Decline from Multimodal Neural and Behavioral Data: A Machine Learning Approach to Age-Related Neural Dedifferentiation</div>
+          <div class="pub-meta">Honors Thesis, University of Michigan &middot; submission April 2027</div>
+        </div>
+      </div>
+
+      <div class="pub-entry reveal">
+        <div class="pub-type">Poster</div>
+        <div>
+          <div class="pub-title">Investigating Age-Related Neural Dedifferentiation Longitudinally and in Mild Cognitive Impairment</div>
+          <div class="pub-meta">UM Undergraduate Research Symposium &middot; 2024</div>
+          <div class="project-links">
+            <a href="images/neuro-projects/UROP Symposium 2025.pdf">Poster PDF →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-entry reveal">
+        <div class="pub-type">Talk</div>
+        <div>
+          <div class="pub-title">Segmentation of Hippocampal Dentations and Virtual Dissection of Their Connectome Using Mesoscale Diffusion MRI</div>
+          <div class="pub-meta">Center for Neuroscience, University of Pittsburgh &middot; 2025 &middot; results pending publication</div>
         </div>
       </div>
     </div>
@@ -858,8 +1035,7 @@
 <!-- ================= SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
-    <div class="eyebrow">05 — skills</div>
-    <h2 class="section-title">Technical Skills</h2>
+    <div class="eyebrow">06 — skills</div>
 
     <div class="skills-grid">
       <div class="skill-group reveal">
@@ -897,12 +1073,13 @@
 <!-- ================= CONTACT ================= -->
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow">06 — contact</div>
+    <div class="eyebrow">07 — contact</div>
     <h2>Let's build something.</h2>
     <p>Open to SWE, ML, and research opportunities.</p>
     <div class="contact-links">
       <a class="btn primary" href="mailto:mbala@umich.edu">✉ mbala@umich.edu</a>
-      <a class="btn" href="https://www.linkedin.com/in/manishikab">in/ LinkedIn</a>
+      <a class="btn" href="https://www.linkedin.com/in/manishikab/">LinkedIn</a>
+      <a class="btn" href="https://github.com/manishikab">GitHub</a>
     </div>
   </div>
 </section>
@@ -998,7 +1175,6 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
   }
-
 </script>
 
 </body>
