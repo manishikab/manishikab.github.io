@@ -320,172 +320,170 @@
     height:100%;
   }
 
-  /* ---------- education ---------- */
-  .edu-card{
-    position:relative;
-    border:1px solid var(--panel-border);
-    background:var(--panel);
-    padding:clamp(24px,3.5vw,36px);
-    overflow:hidden;
-  }
-  .edu-card::before{
-    content:"";
-    position:absolute;
-    top:0;left:0;bottom:0;
-    width:4px;
-    background:var(--red);
-  }
-  .edu-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:28px;
-    margin-bottom:22px;
-  }
-  .edu-kicker{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    color:var(--red);
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:8px;
-  }
-  .edu-card h3{
-    font-size:clamp(22px,2.6vw,28px);
-    font-weight:800;
-    letter-spacing:-0.025em;
-    margin-bottom:9px;
-  }
-  .edu-card .school-meta{
+  /* ---------- journey timeline ---------- */
+  .journey-intro{
+    max-width:700px;
+    font-size:18px;
+    line-height:1.65;
     color:var(--grey);
-    font-size:14px;
-    max-width:760px;
-  }
-  .resume-chip{
-    flex-shrink:0;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    font-weight:600;
-    color:var(--red);
-    border:1px solid var(--red-dim);
-    background:rgba(138,14,34,.045);
-    padding:11px 18px;
-    white-space:nowrap;
-    transition:border-color .2s, background .2s;
-  }
-  .resume-chip:hover{border-color:var(--red);background:rgba(138,14,34,.09);}
-  .edu-note{
-    font-size:13.5px;
-    font-style:italic;
-    color:var(--grey);
-    max-width:600px;
-    margin-top:10px;
-  }
-  .edu-section-label{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    font-weight:700;
-    color:var(--white);
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:13px;
-  }
-  .edu-section-label::after{
-    content:"";
-    height:1px;
-    flex:1;
-    background:var(--panel-border);
-  }
-  .honors-list{
-    list-style:none;
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:10px 28px;
-    font-size:14px;
-    color:var(--grey);
-    margin-bottom:26px;
-  }
-  .honors-list li{
-    position:relative;
-    padding-left:24px;
-    line-height:1.45;
-  }
-  .honors-list li::before{
-    content:"✦";
-    position:absolute;
-    left:0;
-    top:0;
-    color:var(--red);
-    font-size:13px;
-  }
-  .coursework{
-    padding-top:0;
-  }
-  .coursework-group{margin-bottom:16px;}
-  .coursework-group:last-child{margin-bottom:0;}
-  .coursework-cat{
-    display:block;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10.5px;
-    color:var(--red);
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    margin-bottom:9px;
-  }
-  .coursework-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .coursework-list span{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11.5px;
-    color:var(--grey);
-    border:1px solid var(--panel-border);
-    background:var(--black);
-    padding:7px 10px;
-    transition:border-color .2s,color .2s,transform .2s;
-  }
-  .coursework-list span:hover{
-    border-color:var(--red-dim);
-    color:var(--white);
-    transform:translateY(-1px);
+    margin:-8px 0 54px;
   }
 
-  @media(max-width:720px){
-    .edu-top{flex-direction:column;}
-    .resume-chip{align-self:flex-start;}
-    .honors-list{grid-template-columns:1fr;}
+  .journey-intro strong{color:var(--white);font-weight:700;}
+.journey-timeline {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  left: 132px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--panel-border);
+}
+
+.journey-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 44px 1fr;
+  column-gap: 22px;
+  padding-bottom: 3.25rem;
+}
+
+.journey-entry:last-child {
+  padding-bottom: 0;
+}
+
+.journey-date {
+  padding-top: 3px;
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--grey-dim);
+}
+
+.journey-marker {
+  position: relative;
+  z-index: 2;
+  width: 9px;
+  height: 9px;
+  margin: 5px auto 0;
+  border: 1px solid var(--red);
+  border-radius: 50%;
+  background: var(--black);
+}
+
+.journey-entry.current .journey-marker::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.journey-body {
+  min-width: 0;
+}
+
+.journey-org {
+  margin-bottom: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.journey-role {
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.journey-meta {
+  margin-bottom: 0.65rem;
+  font-size: 0.8rem;
+  color: var(--grey-dim);
+}
+
+.journey-note {
+  max-width: 680px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--grey);
+}
+
+.journey-type {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--panel-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--grey-dim);
+  text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .journey-timeline::before {
+    left: 8px;
   }
 
-  /* ---------- experience / research timeline ---------- */
-  .timeline{position:relative;}
-  .entry{
-    display:grid;
-    grid-template-columns:180px 1fr;
-    gap:32px;
-    padding:36px 0;
-    border-top:1px solid var(--panel-border);
+  .journey-entry {
+    grid-template-columns: 24px 1fr;
+    column-gap: 16px;
+    padding-bottom: 2.75rem;
   }
-  .entry:first-child{border-top:none;}
-  .entry-date{
-    font-family:'JetBrains Mono',monospace;
-    font-size:13px;color:var(--grey-dim);
-    padding-top:4px;
-  }
-  .entry-body h3{font-size:20px;font-weight:700;margin-bottom:4px;}
-  .entry-role{color:var(--red);font-size:14px;font-weight:600;margin-bottom:2px;}
-  .entry-loc{color:var(--grey-dim);font-size:13px;margin-bottom:16px;}
-  .entry-body ul{list-style:none;font-size:14.5px;color:var(--grey);}
-  .entry-body ul li{padding:6px 0 6px 18px;position:relative;}
-  .entry-body ul li::before{content:"▹";position:absolute;left:0;color:var(--red);font-size:12px;top:8px;}
 
-  @media(max-width:640px){
-    .entry{grid-template-columns:1fr;gap:8px;}
+  .journey-date {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 0;
+    margin-bottom: 0.35rem;
+    text-align: left;
   }
+
+  .journey-marker {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    margin: 4px 0 0;
+  }
+
+  .journey-body {
+    grid-column: 2;
+  }
+}
+
+.journey-resume {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.journey-resume-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+  .journey-resume {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
   /* ---------- projects grid ---------- */
   .projects-subhead{
@@ -657,10 +655,8 @@
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="#home">home</a>
-      <a href="#education">education</a>
-      <a href="#experience">experience</a>
+      <a href="#journey">journey</a>
       <a href="#projects">projects</a>
-      <a href="#research">research</a>
       <a href="#publications">publications</a>
       <a href="#skills">skills</a>
       <a href="#contact">contact</a>
@@ -705,141 +701,102 @@
   </div>
 </section>
 
-<!-- ================= EDUCATION ================= -->
-<section id="education">
+<!-- ================= JOURNEY ================= -->
+<section id="journey">
   <div class="wrap">
-    <div class="eyebrow">01 — education</div>
+    <div class="eyebrow">01 — journey</div>
 
-    <div class="edu-card reveal">
-      <div class="edu-top">
-        <div>
-          <div class="edu-kicker">Undergraduate · Expected May 2027</div>
-          <h3>University of Michigan — Ann Arbor</h3>
-          <div class="school-meta">B.S. Computer Science &amp; Biopsychology, Cognition, and Neuroscience · GPA 3.89&thinsp;/&thinsp;4.00</div>
-        </div>
-        <a class="resume-chip" href="Balamurugan_Resume_Tech_2026.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) →</a>
-      </div>
+    <p class="journey-intro reveal">
+      <strong>I love to learn a little bit about everything.</strong><br>
+    </p>
 
-      <div class="edu-section-label">Honors &amp; Distinctions</div>
-      <ul class="honors-list">
-        <li>Rogel Scholar (Full-Ride Merit Scholarship)</li>
-        <li>William J. Branstrom Prize (Top 5%)</li>
-        <li>James B. Angell Scholar (5 Straight-A Terms)</li>
-        <li>Shining Student Tackling Advanced Research</li>
-        <li>University Honors</li>
-      </ul>
+    <div class="journey-timeline">
 
-      <div class="coursework">
-        <div class="edu-section-label">Selected Coursework</div>
-        <div class="coursework-group">
-          <span class="coursework-cat">CS &amp; Math</span>
-          <div class="coursework-list">
-            <span>Data Structures &amp; Algorithms</span>
-            <span>Discrete Math</span>
-            <span>Computer Organization</span>
-            <span>Foundations of CS</span>
-            <span>Machine Learning</span>
-            <span>Web Systems</span>
-            <span>Applied Linear Algebra</span>
-            <span>Statistics &amp; Data Analysis</span>
-          </div>
-        </div>
-        <div class="coursework-group">
-          <span class="coursework-cat">Neuroscience &amp; Cognition</span>
-          <div class="coursework-list">
-            <span>Behavioral Neuroscience</span>
-            <span>Human Neuropsychology</span>
-            <span>Neural Circuits</span>
-            <span>Cognitive Science &amp; Generative AI</span>
-          </div>
+      <div class="journey-entry current reveal">
+        <div class="journey-date">Aug 2024 — Present</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Computational &amp; Cognitive Neuroscience Lab</div>
+          <div class="journey-role">Research Assistant · University of Michigan</div>
+          <div class="journey-note">Multimodal neural and behavioral data analysis, MRI/MRS quality control, and longitudinal cognitive decline modeling.</div>
         </div>
       </div>
+
+      <div class="journey-entry current reveal">
+        <div class="journey-date">Jun 2026 — Present</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Michigan Data Science Team</div>
+          <div class="journey-role">Project Lead · EEG Cognitive Modeling</div>
+          <div class="journey-note">Using 64-channel EEG data, this project applies machine learning to distinguish alcoholic from control subjects and model differences in brain responses during visual recognition tasks.</div>
+        </div>
+      </div>
+
+      <div class="journey-entry current reveal">
+        <div class="journey-date">Jan 2026 — Present</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Multidisciplinary Design Program</div>
+          <div class="journey-role">Sartorius Student Software Developer</div>
+          <div class="journey-note">Remote lab monitoring and control system with a software-in-the-loop simulator.</div>
+        </div>
+      </div>
+
+      <div class="journey-entry current reveal">
+        <div class="journey-date">Jan 2026 — Present</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Nu Rho Psi</div>
+          <div class="journey-role">Director of Correspondence · University of Michigan </div>
+          <div class="journey-note">Manage weekly communications and membership for the National Honor Society in Neuroscience.</div>
+        </div>
+      </div>
+
+      <div class="journey-entry reveal">
+        <div class="journey-date">May 2026 — Aug 2026</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Sartorius</div>
+          <div class="journey-role">SDE Intern · Advanced Algorithms Team</div>
+          <div class="journey-note">ML pipelines, modular C++/Qt/Python architecture, cross-team interfaces, and reproducible development environments.</div>
+        </div>
+      </div>
+
+      <div class="journey-entry reveal">
+        <div class="journey-date">Sep 2025 — Jan 2026</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">The Michigan Daily</div>
+          <div class="journey-role">Web Engineer</div>
+          <div class="journey-note">Constructors to allow game development by non-technical staff for the online newspaper.</div>
+        </div>
+      </div>
+
+      <div class="journey-entry reveal">
+        <div class="journey-date">May 2025 — Aug 2025</div>
+        <div class="journey-marker"></div>
+        <div class="journey-body">
+          <div class="journey-org">Regenerative Imaging Laboratory</div>
+          <div class="journey-role">Research Fellow · University of Pittsburgh</div>
+          <div class="journey-note">Diffusion MRI, hippocampal connectivity, tractography, and k-means modeling of neural connection patterns.</div>
+        </div>
+      </div>
+
     </div>
+            <div class="journey-resume">
+          <span class="journey-resume-label">want the full picture?</span>
+          <a class="btn primary" href="Balamurugan_Resume_Tech_2026.pdf" target="_blank" rel="noopener noreferrer">
+            View Résumé →
+          </a>
+        </div>
   </div>
-</section>
 
-<!-- ================= EXPERIENCE ================= -->
-<section id="experience">
-  <div class="wrap">
-    <div class="eyebrow">02 — experience</div>
-
-    <h3 class="subhead">Corporate Experience</h3>
-    <div class="timeline">
-      <div class="entry reveal">
-        <div class="entry-date">May 2026 — Aug 2026</div>
-        <div class="entry-body">
-          <div class="entry-role">SDE Intern, Advanced Algorithms Team</div>
-          <h3>Sartorius</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Engineered 2 C++ pipelines to deploy pretrained ML models into production, connecting model inference to image fluorescence quantification and whole-image masking calculations through to the application layer.</li>
-            <li>Eliminated circular dependencies across internal team libraries by architecting a shared interface system of flattened DTOs for 17 analyses, improving build reliability and enabling independent cross-team development.</li>
-            <li>Redesigned a monolithic Qt image analysis tool into a modular MVC system with per-module controllers, decoupling UI (Qt Designer) from logic (Python) across 5 modules, and adding multithreading, cross-window state sync, and error handling.</li>
-            <li>Consolidated 7 fragmented Conda environments into a single modular environment, implementing conda-lock for reproducible builds and custom tooling for environment setup, sync, and validation in Python.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="subhead" style="margin-top:56px;">Other Experience</h3>
-    <div class="timeline">
-      <div class="entry reveal">
-        <div class="entry-date">Jun 2026 — Present</div>
-        <div class="entry-body">
-          <div class="entry-role">Project Lead</div>
-          <h3>Michigan Data Science Team</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Leading an EEG cognitive modeling project.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="entry reveal">
-        <div class="entry-date">Jan 2026 — Present</div>
-        <div class="entry-body">
-          <div class="entry-role">Sartorius Student Software Developer</div>
-          <h3>Multidisciplinary Design Program</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Remote lab monitoring and control system, SIL simulator for testing.</li>
-            <li>C++, Python, Qt, React</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="entry reveal">
-        <div class="entry-date">Jan 2026 — Present</div>
-        <div class="entry-body">
-          <div class="entry-role">Director of Correspondence</div>
-          <h3>Nu Rho Psi</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Executive board member for the university's neuroscience honor society chapter.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="entry reveal">
-        <div class="entry-date">Sep 2025 — Jan 2026</div>
-        <div class="entry-body">
-          <div class="entry-role">Web Engineer</div>
-          <h3>The Michigan Daily</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Created constructor to allow online newspaper game development by non-technical staff.</li>
-            <li>Typescript, Svelte</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ================= PROJECTS ================= -->
 <section id="projects">
   <div class="wrap">
-    <div class="eyebrow">03 — projects</div>
+    <div class="eyebrow">02 — projects</div>
 
     <!-- Flagship projects — given more room to breathe -->
     <div class="project-grid featured-grid">
@@ -960,46 +917,10 @@
   </div>
 </section>
 
-<!-- ================= RESEARCH ================= -->
-<section id="research">
-  <div class="wrap">
-    <div class="eyebrow">04 — research</div>
-
-    <div class="timeline">
-      <div class="entry reveal">
-        <div class="entry-date">Aug 2024 — Present</div>
-        <div class="entry-body">
-          <div class="entry-role">Research Assistant</div>
-          <h3>Computational &amp; Cognitive Neuroscience Lab, University of Michigan</h3>
-          <div class="entry-loc">Ann Arbor, MI</div>
-          <ul>
-            <li>Build R pipelines for statistical analysis and visualization of multimodal neural and behavioral data across hundreds of samples.</li>
-            <li>Perform quality control on MRI/MRS data and manual FreeSurfer segmentation edits on structural brain images.</li>
-            <li>Conduct behavioral data entry and preprocessing to support longitudinal cognitive decline analyses.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="entry reveal">
-        <div class="entry-date">May 2025 — Aug 2025</div>
-        <div class="entry-body">
-          <div class="entry-role">Research Fellow</div>
-          <h3>Regenerative Imaging Laboratory, University of Pittsburgh</h3>
-          <div class="entry-loc">Pittsburgh, PA</div>
-          <ul>
-            <li>Analyzed hippocampal connectivity in 18 brains using diffusion MRI and tractography, performing segmentation in DSI Studio.</li>
-            <li>Applied k-means clustering in MATLAB to model neural connection patterns, identifying structural network trends.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= PUBLICATIONS ================= -->
 <section id="publications">
   <div class="wrap">
-    <div class="eyebrow">05 — publications &amp; talks</div>
+    <div class="eyebrow">03 — publications &amp; talks</div>
 
     <div class="pub-list">
       <div class="pub-entry reveal">
@@ -1035,7 +956,7 @@
 <!-- ================= SKILLS ================= -->
 <section id="skills">
   <div class="wrap">
-    <div class="eyebrow">06 — skills</div>
+    <div class="eyebrow">04 — skills</div>
 
     <div class="skills-grid">
       <div class="skill-group reveal">
@@ -1073,7 +994,7 @@
 <!-- ================= CONTACT ================= -->
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow">07 — contact</div>
+    <div class="eyebrow">05 — contact</div>
     <h2>Let's build something.</h2>
     <p>Open to SWE, ML, and research opportunities.</p>
     <div class="contact-links">
