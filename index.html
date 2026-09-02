@@ -485,103 +485,322 @@
   }
 }
 
-  /* ---------- projects grid ---------- */
-  .projects-subhead{
+  /* ---------- projects archive ---------- */
+  .projects-intro{
+    max-width:700px;
+    font-size:18px;
+    line-height:1.65;
+    color:var(--grey);
+    margin:-8px 0 50px;
+  }
+  /* Projects are a visual gallery, so they get a wider canvas than prose sections. */
+  #projects .wrap{max-width:1400px;}
+
+  .projects-toolbar{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:24px;
+    margin:-22px 0 20px;
+  }
+  .projects-count,
+  .projects-hint{
     font-family:'JetBrains Mono',monospace;
-    font-size:11px;color:var(--grey-dim);
-    letter-spacing:.08em;text-transform:uppercase;
-    display:flex;align-items:center;gap:10px;
-    margin:0 0 20px;
+    font-size:11px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
   }
-  .projects-subhead::after{content:"";height:1px;flex:1;background:var(--panel-border);}
-  .projects-subhead:not(:first-child){margin-top:50px;}
+  .projects-count{color:var(--red);}
+  .projects-hint{color:var(--grey-dim);text-align:right;}
 
-  .project-grid{
+  .project-showcase{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:24px;
+    grid-template-columns:minmax(260px, .78fr) minmax(0, 1.45fr);
+    align-items:stretch;
+    border-top:1px solid var(--panel-border);
+    border-bottom:1px solid var(--panel-border);
   }
-  .project-card{
-    border:1px solid var(--panel-border);
-    background:var(--panel);
-    display:flex;flex-direction:column;
-    overflow:hidden;
-    transition:border-color .25s, transform .25s;
-  }
-  .project-card:hover{border-color:var(--red);transform:translateY(-3px);}
 
-  /* featured (flagship) project variant — spans full width, side-by-side layout */
-  .project-grid.featured-grid{
-    grid-template-columns:1fr;
-    gap:24px;
-    margin-bottom:24px;
-  }
-  .project-card.featured{
-    flex-direction:row;
-  }
-  .project-card.featured .project-thumb{
-    width:42%;
-    flex-shrink:0;
-    aspect-ratio:auto;
-    border-bottom:none;
+  .project-list{
     border-right:1px solid var(--panel-border);
   }
-  .project-card.featured .project-body{padding:32px;}
-  .project-card.featured .project-body h3{font-size:22px;}
-  .project-card.featured .project-body p{font-size:14.5px;}
-  .featured-badge{
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--red);
-    border:1px solid var(--red-dim);
-    background:rgba(138,14,34,.06);
-    padding:4px 9px;
-    display:inline-flex;align-items:center;gap:5px;
-    align-self:flex-start;
-  }
-  @media(max-width:720px){
-    .project-card.featured{flex-direction:column;}
-    .project-card.featured .project-thumb{width:100%;aspect-ratio:16/10;border-right:none;border-bottom:1px solid var(--panel-border);}
+
+  .project-item{
+    width:100%;
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:14px;
+    align-items:start;
+    padding:19px 20px;
+    border:0;
+    border-bottom:1px solid var(--panel-border);
+    background:transparent;
+    color:var(--grey-dim);
+    text-align:left;
+    cursor:pointer;
+    font:inherit;
+    transition:background .2s,color .2s;
   }
 
-  .project-thumb{
-    aspect-ratio:16/10;
-    overflow:hidden;
-    background:
-      repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
-    border-bottom:1px solid var(--panel-border);
-    display:flex;align-items:center;justify-content:center;
-    flex-direction:column;gap:8px;
+  .project-item:last-child{border-bottom:none;}
+  .project-item:hover{background:var(--panel);color:var(--white);}
+
+  .project-item.active{
+    background:var(--panel);
+    color:var(--white);
+    box-shadow:inset 3px 0 0 var(--red);
+  }
+
+  .project-item-number{
+    padding-top:2px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
     color:var(--grey-dim);
   }
 
-  .project-thumb img{
+  .project-item.active .project-item-number{color:var(--red);}
+
+  .project-item-title{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+    line-height:1.35;
+  }
+
+  .project-item-meta{
+    display:block;
+    margin-top:5px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    line-height:1.4;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--grey-dim);
+  }
+
+  .project-item.active .project-item-title{color:var(--red);}
+
+  .project-preview{
+    min-width:0;
+    min-height:100%;
+    display:flex;
+  }
+
+  .project-panel{display:none;}
+  .project-panel.active{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:minmax(250px, 48%) minmax(0, 1fr);
+    width:100%;
+    min-height:100%;
+  }
+
+  .project-preview-media{
+    min-height:0;
+    overflow:hidden;
+    border-left:1px solid var(--panel-border);
+    border-bottom:1px solid var(--panel-border);
+    background:
+      repeating-linear-gradient(45deg,#f1f0ea,#f1f0ea 10px,#e9e7df 10px,#e9e7df 20px);
+  }
+
+  .project-preview-media img{
     width:100%;
     height:100%;
-    min-width:0;
-    min-height:0;
     object-fit:cover;
     display:block;
-    flex-shrink:0;
   }
 
-  .project-thumb .icon{font-size:22px;}
-  .project-thumb .ph-label{
-    font-family:'JetBrains Mono',monospace;font-size:11px;
-    letter-spacing:.05em;
+  .project-preview-content{
+    min-width:0;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    padding:26px;
   }
 
-  .project-body{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1;}
-  .project-tag{
-    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);
-    letter-spacing:.05em;
+  .project-preview-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:var(--red);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:10px;
   }
-  .project-body h3{font-size:18px;font-weight:700;}
-  .project-body p{font-size:14px;color:var(--grey);flex:1;}
-  .project-links{display:flex;gap:14px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;flex-wrap:wrap;}
-  .project-links a{color:var(--grey);border-bottom:1px solid var(--grey-dim);padding-bottom:2px;transition:color .2s,border-color .2s;}
+
+  .project-preview-content h3{
+    font-size:24px;
+    line-height:1.15;
+    letter-spacing:-.02em;
+    margin-bottom:14px;
+  }
+
+  .project-preview-content p{
+    font-size:14px;
+    line-height:1.7;
+    color:var(--grey);
+    margin-bottom:20px;
+  }
+
+  .project-facts{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    border-top:1px solid var(--panel-border);
+    margin:0 0 22px;
+  }
+  .project-fact{
+    min-width:0;
+    padding:12px 13px 0 0;
+  }
+  .project-fact + .project-fact{
+    border-left:1px solid var(--panel-border);
+    padding-left:13px;
+  }
+  .project-fact dt{
+    margin-bottom:4px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    color:var(--grey-dim);
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .project-fact dd{
+    font-size:11px;
+    line-height:1.45;
+    color:var(--white);
+  }
+
+  .project-preview-content .project-links{
+    margin-top:auto;
+  }
+
+  .project-links{
+    display:flex;
+    gap:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    flex-wrap:wrap;
+  }
+
+  .project-links a{
+    color:var(--grey);
+    border-bottom:1px solid var(--grey-dim);
+    padding-bottom:2px;
+    transition:color .2s,border-color .2s;
+  }
+
   .project-links a:hover{color:var(--red);border-color:var(--red);}
 
+  @media(max-width:820px){
+    .project-showcase{grid-template-columns:1fr;}
+    .project-list{border-right:none;border-bottom:1px solid var(--panel-border);display:grid;grid-template-columns:1fr 1fr;}
+    .project-item{border-right:1px solid var(--panel-border);}
+    .project-item:nth-child(2n){border-right:none;}
+    .project-item:nth-last-child(-n+2){border-bottom:none;}
+    .project-panel.active{
+      grid-template-rows:minmax(240px, 46%) minmax(0, 1fr);
+    }
+    .project-preview-media{max-width:none;}
+  }
+
+  @media(max-width:560px){
+    .project-list{display:block;}
+    .project-item{border-right:none !important;border-bottom:1px solid var(--panel-border) !important;}
+    .project-item:last-child{border-bottom:none !important;}
+    .project-preview-content{padding:20px;}
+    .project-panel.active{grid-template-rows:220px minmax(0, 1fr);}
+    .project-preview-content h3{font-size:21px;}
+    .projects-toolbar{align-items:flex-start;flex-direction:column;gap:6px;margin-top:-26px;}
+    .projects-hint{text-align:left;}
+    .project-facts{grid-template-columns:1fr;gap:10px;padding:12px 0;}
+    .project-fact,.project-fact + .project-fact{padding:0;border-left:none;}
+  }
+
+  /* Circular project shelf */
+  .project-carousel-shell{
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr) 44px;
+    align-items:center;
+    gap:16px;
+  }
+  .project-carousel-button{
+    width:44px;height:44px;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+    color:var(--white);
+    font:700 17px/1 'JetBrains Mono',monospace;
+    cursor:pointer;
+    transition:background .2s,border-color .2s,color .2s;
+  }
+  .project-carousel-button:hover{border-color:var(--red);color:var(--red);}
+  .project-showcase{display:block;width:100%;overflow:hidden;border:0;}
+  .project-preview{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    width:100%;
+    min-width:0;
+    gap:20px;
+    transition:transform .45s cubic-bezier(.22,.61,.36,1);
+    will-change:transform;
+  }
+  .project-panel,
+  .project-panel.active,
+  .project-panel[hidden]{
+    display:flex !important;
+    flex:0 0 calc((100% - 40px) / 3);
+    width:calc((100% - 40px) / 3);
+    min-width:0;
+    flex-direction:column;
+    min-height:400px;
+    aspect-ratio:1 / 1;
+    border:1px solid var(--panel-border);
+    background:var(--panel);
+  }
+  .project-preview-media{height:135px;min-height:135px;border:0;border-bottom:1px solid var(--panel-border);}
+  .project-preview-content{flex:1;padding:19px;}
+  .project-preview-content h3{font-size:18px;margin-bottom:9px;}
+  .project-preview-content p{
+    margin-bottom:12px;
+  }
+  .project-facts{margin-bottom:14px;}
+  .project-fact{padding-top:8px;padding-right:7px;}
+  .project-fact + .project-fact{padding-left:8px;}
+  .project-fact dt{font-size:8px;}
+  .project-fact dd{font-size:9.5px;}
+  .project-preview-tag{font-size:9px;margin-bottom:7px;}
+  .project-links{font-size:11px;gap:10px;}
+  .project-dots{
+    display:flex;
+    justify-content:center;
+    gap:9px;
+    margin-top:22px;
+  }
+  .project-dot{
+    width:7px;height:7px;
+    padding:0;
+    border:1px solid var(--grey-dim);
+    border-radius:50%;
+    background:transparent;
+    cursor:pointer;
+    transition:transform .2s,background .2s,border-color .2s;
+  }
+  .project-dot:hover{border-color:var(--red);}
+  .project-dot.active{transform:scale(1.35);border-color:var(--red);background:var(--red);}
+
+  @media(max-width:980px){
+    .project-carousel-shell{grid-template-columns:40px minmax(0,1fr) 40px;gap:10px;}
+    .project-carousel-button{width:40px;height:40px;}
+  }
+  @media(max-width:560px){
+    .project-carousel-shell{grid-template-columns:36px minmax(0,1fr) 36px;gap:8px;}
+    .project-carousel-button{width:36px;height:36px;}
+    .project-panel,
+    .project-panel.active,
+    .project-panel[hidden]{flex-basis:100%;min-height:0;aspect-ratio:auto;}
+    .project-preview-media{height:180px;min-height:180px;}
+    .project-preview-content{padding:22px;}
+  }
   /* ---------- publications ---------- */
   .pub-list{display:flex;flex-direction:column;}
   .pub-entry{
@@ -707,7 +926,7 @@
     <div class="eyebrow">01 — journey</div>
 
     <p class="journey-intro reveal">
-      <strong>I love to learn a little bit about everything.</strong><br>
+      <strong>Where I've Been.</strong><br>
     </p>
 
     <div class="journey-timeline">
@@ -798,124 +1017,171 @@
   <div class="wrap">
     <div class="eyebrow">02 — projects</div>
 
-    <!-- Flagship projects — given more room to breathe -->
-    <div class="project-grid featured-grid">
+    <p class="projects-intro reveal">
+      <strong>What I've Built.</strong><br>
+    </p>
 
-      <div class="project-card featured reveal">
-        <div class="project-thumb">
-          <img src="images/mriscan.png" alt="Brain Tumor Detection logo">
-        </div>
-        <div class="project-body">
-          <span class="featured-badge">★ flagship</span>
-          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
-          <h3>Brain Tumor Detection &amp; Classification Using Deep Learning</h3>
-          <p>A convolutional neural network trained to classify MRI scans into tumor and non-tumor categories with high accuracy, with per-class breakdowns across glioma, meningioma, pituitary, and normal scans.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/brain-mri-classifier">Code →</a>
-            <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data">Data →</a>
-            <a href="brain-mri.html">Model statistics →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card featured reveal">
-        <div class="project-thumb">
-          <img src="images/gpt2.png" alt="GPT-2 logo">
-        </div>
-        <div class="project-body">
-          <span class="featured-badge">★ flagship</span>
-          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · SEP – DEC 2025</div>
-          <h3>Replica of GPT-2</h3>
-          <p>GPT-2-style Transformer implemented from first principles in PyTorch — self-attention, multi-head causal attention, MLP blocks, and layer norm without high-level abstractions. Trained on Shakespeare &amp; Wikipedia corpora and benchmarked against pretrained GPT-2 weights.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/gpt-2">Code →</a>
-          </div>
-        </div>
-      </div>
-
+    <div class="projects-toolbar">
     </div>
 
-    <div class="projects-subhead">other projects</div>
+    <div class="project-carousel-shell reveal" aria-label="Project gallery">
+      <button class="project-carousel-button" id="projectPrevious" type="button" aria-label="Show previous projects">&larr;</button>
 
-    <div class="project-grid">
+    <div class="project-showcase reveal" id="projectShowcase">
+      <div class="project-preview" aria-label="Project dossier">
 
-      <div class="project-card reveal">
-        <div class="project-thumb">
-            <img src="images/aa.png" alt="AA logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · JAN – APR 2026</div>
-          <h3>American Airlines Sponsored Project</h3>
-          <p>Hybrid ML pipeline with Random Forest, XGBoost, and GenAI to minimize high-cost flight simulator cancellations from historical operational logs — 85.2% accuracy predicting sequence outcomes.</p>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb">
-            <img src="images/sartorius.png" alt="Sartorius logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">MICHIGAN DATA SCIENCE TEAM · JAN – APR 2026</div>
-          <h3>Remote Monitoring and Control Platform for Biolab Equipment</h3>
-          <p>Sartorius sponsored project to develop a web-based platform for remote monitoring and control of biolab equipment.</p>
-          <div class="project-links">
-            <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/">More info →</a>
+        <article class="project-panel" id="project-panel-0">
+          <div class="project-preview-media">
+            <img src="images/mriscan.png" alt="Brain Tumor Detection logo">
           </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-         <div class="project-thumb">
-            <img src="images/student_coach_ss.png" alt="Student Dashboard logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
-          <h3>AI-Powered Student Dashboard</h3>
-          <p>Full-stack web app with FastAPI + React, integrating an NLP-based chatbot to answer student queries and generate personalized workflow recommendations. SQLite-backed REST APIs with optimized frontend state management for low-latency interaction.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/student-tracker">Code →</a>
-            <a href="https://ai-student-coach-frontend.onrender.com/" target="_blank" rel="noopener noreferrer" >Live site →</a>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2026</div>
+            <h3>Brain MRI Classifier</h3>
+            <p>CNN classifier for glioma, meningioma, pituitary, and healthy MRIs, with per-class evaluation across tumor and non-tumor scans.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Medical Image Classification</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>CNN</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Model Report</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/brain-mri-classifier">Code →</a>
+              <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data">Data →</a>
+              <a href="brain-ml.html">Model statistics →</a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
-      <div class="project-card reveal">
-        <div class="project-thumb">
-          <img src="images/face_rec.png" alt="Face Recognition Attendance System logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
-          <h3>Face Recognition Attendance System</h3>
-          <p>A real-time attendance system that
-                  identifies individuals via webcam,
-                  logs attendance with timestamps in CSV format,
-                  and sends automated email alerts with snapshots of unknown faces.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/face-recognition">Code →</a>
-            <a href="face-rec.html">Demo →</a>
+        <article class="project-panel" id="project-panel-1">
+          <div class="project-preview-media">
+            <img src="images/gpt2.png" alt="GPT-2 logo">
           </div>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-thumb">
-          <img src="images/cat_game_ss.png" alt="Catch The Cat! logo" >
-        </div>
-        <div class="project-body">
-          <div class="project-tag">PERSONAL · JUNE – AUG 2026</div>
-          <h3>Catch The Cat!</h3>
-            <p>A  2D puzzle game developed using C++ and SFML.</p>
-          <div class="project-links">
-            <a href="https://github.com/manishikab/trap_cat_game">Code →</a>
-            <a href="images/cat-game/Gameplay_for_portfolio.mp4">Demo →</a>
-            <a href="https://manishikab.itch.io/catch-the-cat">Download →</a>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">MICHIGAN DATA SCIENCE TEAM · SEP – DEC 2025</div>
+            <h3>GPT-2 from Scratch</h3>
+            <p>GPT-2-style Transformer rebuilt in PyTorch, including attention, MLP, layer norm, and causal masking; benchmarked against pretrained weights.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Language Modeling</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>PyTorch</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>GPT-2 benchmark</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/gpt-2">Code →</a>
+            </div>
           </div>
-        </div>
-      </div>
+        </article>
 
+        <article class="project-panel" id="project-panel-2">
+          <div class="project-preview-media">
+            <img src="images/aa.png" alt="American Airlines logo">
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">AMERICAN AIRLINES· JAN – APR 2026</div>
+            <h3>Flight Simulator ML</h3>
+            <p>Hybrid Random Forest, XGBoost, and GenAI pipeline for predicting simulator outcomes and reducing high-cost cancellations.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Operations</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>RF · XGBoost</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>85.2% accuracy</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="project-panel" id="project-panel-3">
+          <div class="project-preview-media">
+            <img src="images/sartorius.png" alt="Sartorius logo">
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">MULTIDISCIPLINARY DESIGN PROGRAM · JAN 2026 – PRESENT</div>
+            <h3>Remote Lab Platform</h3>
+            <p>Sartorius-sponsored web platform for remote monitoring and control of biolab equipment, including a software-in-the-loop simulator.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Full Stack + Simulation</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>Python · C++ · Qt</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Sartorius-sponsored</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/">More info →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" id="project-panel-4">
+          <div class="project-preview-media">
+            <img src="images/student_coach_ss.png" alt="Student Dashboard logo">
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2026</div>
+            <h3>Student Coach</h3>
+            <p>Full-stack React and FastAPI planner with a chatbot that answers student questions and recommends personalized workflows.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Full Stack · AI Integration</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>React · FastAPI</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Live app</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/student-tracker">Code →</a>
+              <a href="https://ai-student-coach-frontend.onrender.com/" target="_blank" rel="noopener noreferrer">Live site →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" id="project-panel-5">
+          <div class="project-preview-media">
+            <img src="images/face_rec.png" alt="Face Recognition Attendance System logo">
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2026</div>
+            <h3>Face Attendance</h3>
+            <p>Real-time webcam tool that records timestamped attendance to CSV and emails snapshots of unknown faces.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Computer Vision · Automation</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>Python · OpenCV</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>CSV + alerts</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/face-recognition">Code →</a>
+              <a href="face-recognition.html">Demo →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" id="project-panel-6">
+          <div class="project-preview-media">
+            <img src="images/cat_game_ss.png" alt="Catch The Cat! logo">
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2026</div>
+            <h3>Catch the Cat</h3>
+            <p>A 2D puzzle game where players trap a fast-moving cat.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Algorithm Design · Game Development</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>C++ · SFML</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Playable build</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/trap_cat_game">Code →</a>
+              <a href="images/cat-game/Gameplay_for_portfolio.mp4">Demo →</a>
+              <a href="https://manishikab.itch.io/catch-the-cat">Download →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+      <button class="project-carousel-button" id="projectNext" type="button" aria-label="Show next projects">&rarr;</button>
+    </div>
+    <div class="project-dots" id="projectDots" aria-label="Choose a project position">
+      <button class="project-dot active" type="button" aria-label="Show project 1" aria-current="true"></button>
+      <button class="project-dot" type="button" aria-label="Show project 2"></button>
+      <button class="project-dot" type="button" aria-label="Show project 3"></button>
+      <button class="project-dot" type="button" aria-label="Show project 4"></button>
+      <button class="project-dot" type="button" aria-label="Show project 5"></button>
+      <button class="project-dot" type="button" aria-label="Show project 6"></button>
+      <button class="project-dot" type="button" aria-label="Show project 7"></button>
     </div>
   </div>
 </section>
+
 
 <!-- ================= PUBLICATIONS ================= -->
 <section id="publications">
@@ -1079,6 +1345,96 @@
       if (!prefersReduced) requestAnimationFrame(draw);
     }
     requestAnimationFrame(prefersReduced ? () => draw(0) : draw);
+  })();
+
+  // project shelf — manual circular navigation
+  (function(){
+    const showcase = document.getElementById('projectShowcase');
+    if (!showcase) return;
+
+    const track = showcase.querySelector('.project-preview');
+    const panels = [...track.querySelectorAll('.project-panel')];
+    const previous = document.getElementById('projectPrevious');
+    const next = document.getElementById('projectNext');
+    const dots = [...document.querySelectorAll('#projectDots .project-dot')];
+    const bufferSize = 3;
+    let currentIndex = 0;
+    let physicalIndex = bufferSize;
+    let isAnimating = false;
+
+    function clonePanel(panel){
+      const clone = panel.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a').forEach(link => link.setAttribute('tabindex', '-1'));
+      return clone;
+    }
+
+    // Copies on either end keep the three-card shelf moving in one direction at the wrap.
+    panels.slice(-bufferSize).reverse().forEach(panel => track.prepend(clonePanel(panel)));
+    panels.slice(0, bufferSize).forEach(panel => track.append(clonePanel(panel)));
+
+    function stepSize(){
+      const card = track.querySelector('.project-panel');
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function position(animate = true){
+      track.style.transition = animate ? '' : 'none';
+      track.style.transform = `translateX(${-physicalIndex * stepSize()}px)`;
+      if (!animate) {
+        // Commit the cloned-to-original reset before restoring transitions.
+        // Without this paint boundary, the browser animates the reset as a long rewind.
+        void track.offsetWidth;
+        requestAnimationFrame(() => { track.style.transition = ''; });
+      }
+    }
+
+    function updateDots(){
+      dots.forEach((dot, index) => {
+        const active = index === currentIndex;
+        dot.classList.toggle('active', active);
+        if (active) dot.setAttribute('aria-current', 'true');
+        else dot.removeAttribute('aria-current');
+      });
+    }
+
+    function move(direction){
+      if (isAnimating) return;
+      isAnimating = true;
+      previous.disabled = true;
+      next.disabled = true;
+      currentIndex = (currentIndex + direction + panels.length) % panels.length;
+      physicalIndex += direction;
+      position();
+      updateDots();
+    }
+
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    dots.forEach((dot, index) => dot.addEventListener('click', () => {
+      if (isAnimating) return;
+      currentIndex = index;
+      physicalIndex = index + bufferSize;
+      position(false);
+      updateDots();
+    }));
+    track.addEventListener('transitionend', event => {
+      if (event.propertyName !== 'transform') return;
+      if (physicalIndex === panels.length + bufferSize) {
+        physicalIndex = bufferSize;
+        position(false);
+      } else if (physicalIndex === bufferSize - 1) {
+        physicalIndex = panels.length + bufferSize - 1;
+        position(false);
+      }
+      isAnimating = false;
+      previous.disabled = false;
+      next.disabled = false;
+    });
+    window.addEventListener('resize', () => position(false));
+    position(false);
   })();
 
   // scroll reveal
