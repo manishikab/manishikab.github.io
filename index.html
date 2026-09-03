@@ -142,6 +142,7 @@
     padding-bottom:clamp(110px,12vw,150px);
     border-bottom:none;
   }
+  #home .wrap{position:relative;z-index:1;}
   .hero-grid{
     display:grid;
     grid-template-columns:minmax(0,1fr) 400px;
@@ -576,7 +577,6 @@
     min-width:0;
     flex-direction:column;
     min-height:400px;
-    aspect-ratio:1 / 1;
     border:1px solid var(--panel-border);
     background:var(--panel);
   }
@@ -620,7 +620,7 @@
     .project-carousel-shell{grid-template-columns:36px minmax(0,1fr) 36px;gap:8px;}
     .project-carousel-button{width:36px;height:36px;}
     .project-panel,
-    .project-panel.active{flex-basis:100%;min-height:0;aspect-ratio:auto;}
+    .project-panel.active{flex-basis:100%;min-height:0;}
     .project-preview-media{height:180px;min-height:180px;}
     .project-preview-content{padding:22px;}
   }
