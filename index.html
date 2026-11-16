@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manishika Balamurugan — Portfolio</title>
+<title>Manishika Balamurugan — Software Developer &amp; Researcher</title>
 
-<meta name="description" content="Manishika Balamurugan — CS & Neuroscience student at the University of Michigan building at the intersection of machine learning and health tech. SWE @ Sartorius, research in computational neuroscience.">
-<meta property="og:title" content="Manishika Balamurugan — Portfolio">
-<meta property="og:description" content="CS & Neuroscience student at the University of Michigan building at the intersection of machine learning and health tech.">
+<meta name="description" content="Manishika Balamurugan is a software developer and researcher at the University of Michigan, working across machine learning, scientific software, and neuroscience.">
+<meta property="og:title" content="Manishika Balamurugan — Software Developer &amp; Researcher">
+<meta property="og:description" content="Software development and research across machine learning, scientific software, and neuroscience.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://manishikab.github.io/headshot.jpeg">
 <meta name="twitter:card" content="summary">
@@ -237,32 +237,6 @@
     font-weight:700;
   }
 
-  /* ---------- currently line ---------- */
-  .currently{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
-    color:var(--grey);
-    padding:8px 14px;
-    border:1px solid var(--panel-border);
-    background:var(--panel);
-  }
-  .currently .dot-live{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--red);
-    flex-shrink:0;
-    animation:pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse{
-    0%,100%{opacity:1;}
-    50%{opacity:.35;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .currently .dot-live{animation:none;}
-  }
-
   .btn{
     font-family:'JetBrains Mono',monospace;
     font-size:13px;
@@ -290,15 +264,6 @@
   }
 
   /* ---------- journey timeline ---------- */
-  .journey-intro{
-    max-width:700px;
-    font-size:18px;
-    line-height:1.65;
-    color:var(--grey);
-    margin:-8px 0 54px;
-  }
-
-  .journey-intro strong{color:var(--white);font-weight:700;}
 .journey-timeline {
   position: relative;
   margin-top: 3rem;
@@ -438,13 +403,6 @@
 }
 
   /* ---------- projects archive ---------- */
-  .projects-intro{
-    max-width:700px;
-    font-size:18px;
-    line-height:1.65;
-    color:var(--grey);
-    margin:-8px 0 50px;
-  }
   /* Projects are a visual gallery, so they get a wider canvas than prose sections. */
   #projects .wrap{max-width:1040px;}
 
@@ -625,13 +583,6 @@
     .project-preview-content{padding:22px;}
   }
   /* ---------- publications ---------- */
-  .research-intro{
-    max-width:690px;
-    margin:-8px 0 42px;
-    color:var(--grey);
-    font-size:17px;
-    line-height:1.65;
-  }
   .pub-list{display:flex;flex-direction:column;border-bottom:1px solid var(--panel-border);}
   .pub-entry{
     display:grid;
@@ -640,12 +591,12 @@
     padding:26px 0;
     border-top:1px solid var(--panel-border);
   }
-  .pub-entry.featured{padding-left:18px;border-left:2px solid var(--red);background:linear-gradient(90deg,rgba(138,14,34,.045),transparent 55%);}
+  .pub-entry.featured{box-shadow:inset 2px 0 var(--red);background:linear-gradient(90deg,rgba(138,14,34,.045),transparent 55%);}
   .pub-type{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;color:var(--red);
     letter-spacing:.08em;text-transform:uppercase;
-    padding-top:2px;
+    padding:2px 0 0 18px;
   }
   .pub-title{font-size:15.5px;font-weight:600;margin-bottom:4px;line-height:1.4;}
   .pub-meta{font-size:13px;color:var(--grey-dim);margin-bottom:8px;}
@@ -663,15 +614,6 @@
   }
 
   /* ---------- skills ---------- */
-  .skills-intro{
-    max-width:700px;
-    font-size:18px;
-    line-height:1.65;
-    color:var(--grey);
-    margin:-8px 0 48px;
-  }
-  .skills-intro strong{color:var(--white);font-weight:700;}
-
   .skills-stack{
     display:flex;
     flex-direction:column;
@@ -736,7 +678,6 @@
   }
 
   @media(max-width:640px){
-    .skills-intro{margin-bottom:36px;}
     .skill-row{
       grid-template-columns:1fr;
       gap:12px;
@@ -766,65 +707,25 @@
     font-size:clamp(17px,2vw,20px);
     line-height:1.7;
   }
-  .contact-meta{
-    display:grid;
-    grid-template-columns:190px minmax(0,1fr);
-    gap:0;
+  .contact-links{display:flex;align-items:center;flex-wrap:wrap;gap:12px;}
+  .contact-links .btn{
+    padding:11px 15px;
     border:1px solid var(--panel-border);
     background:var(--panel);
-    box-shadow:8px 8px 0 var(--red-dim);
-  }
-  .contact-label{
-    font-family:'JetBrains Mono',monospace;
-    font-size:11px;
-    font-weight:600;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--red);
-    padding:32px 28px;
-    border-right:1px solid var(--panel-border);
-  }
-  .contact-label::before{
-    content:'';display:inline-block;width:18px;height:1px;
-    background:var(--red);vertical-align:middle;margin-right:10px;
-  }
-  .contact-content{padding:32px 36px 36px;}
-  .contact-openness{
-    font-family:'JetBrains Mono',monospace;
-    font-size:clamp(18px,2.3vw,23px);
-    line-height:1.5;
-    color:var(--white);
-    margin-bottom:27px;
-  }
-  .contact-links{display:flex;align-items:center;flex-wrap:wrap;gap:14px 26px;}
-  .contact-links .btn{
-    padding:9px 0; border:0; background:none; color:var(--grey);
+    color:var(--grey);
     font-family:'JetBrains Mono',monospace; font-size:13px;
     font-weight:600;
     letter-spacing:.03em;
-    transition:color .2s ease, transform .2s ease, background .2s ease;
+    transition:color .2s ease, transform .2s ease, background .2s ease, border-color .2s ease;
   }
   .contact-links .btn::after{content:'↗';margin-left:9px;color:var(--red);transition:transform .2s ease;}
-  .contact-links .btn:hover{color:var(--red);transform:translateY(-1px);}
+  .contact-links .btn:hover{color:var(--red);border-color:var(--red);background:rgba(138,14,34,.05);transform:translateY(-1px);}
   .contact-links .btn:hover::after{display:inline-block;transform:translate(2px,-2px);}
-  .contact-links .btn.primary{
-    padding:13px 17px;
-    background:var(--red);
-    color:#fff;
-    box-shadow:3px 3px 0 #d8b1b8;
-  }
-  .contact-links .btn.primary::after{color:#fff;}
-  .contact-links .btn.primary:hover{background:#6e091a;color:#fff;transform:translate(-1px,-2px);}
-
   @media(max-width:640px){
     #contact{padding:118px 0 110px;}
     #contact h2{font-size:clamp(34px,9vw,46px);}
     #contact p{margin-bottom:42px;}
-    .contact-meta{grid-template-columns:1fr;box-shadow:5px 5px 0 var(--red-dim);}
-    .contact-label{padding:20px 22px 0;border-right:0;}
-    .contact-content{padding:20px 22px 26px;}
-    .contact-openness{font-size:18px;}
-    .contact-links{gap:10px 22px;}
+    .contact-links{gap:10px;}
     .contact-links .btn{font-size:14px;}
   }
 
@@ -864,20 +765,12 @@
       <div>
         <h1 class="name">Manishika<br>Balamurugan</h1>
         <p class="tagline">
-          <strong>Coder</strong> by trade. <strong>Researcher</strong> by design. <br>
-          <span class="tag-accent">Health tech enthusiast</span> by purpose.
+          <strong>Software developer and researcher.</strong>
         </p>
 
-        <p class="about-blurb"> I started out fascinated by the brain, not by code. But the more I studied cognition,
-          the more I realized how little we truly understand about how the brain works.
-          To get better answers, we need better tools.
-          <strong>That’s what I’m building.</strong>
+        <p class="about-blurb">The more I study the brain, the more I realize how little we truly understand about how it works.
+          <strong>Better questions need better tools, and that’s what I strive to build.</strong>
         </p>
-
-        <div class="currently mono">
-          <span class="dot-live"></span>
-          Currently: Leading an EEG cognitive modeling project for students @ The Michigan Data Science Team
-        </div>
       </div>
       <div class="hero-photo-col">
         <div class="hero-photo">
@@ -898,10 +791,6 @@
 <section id="journey">
   <div class="wrap">
     <div class="eyebrow">01 — journey</div>
-
-    <p class="journey-intro reveal">
-      <strong>Where I've Been.</strong><br>
-    </p>
 
     <div class="journey-timeline">
 
@@ -991,17 +880,13 @@
   <div class="wrap">
     <div class="eyebrow">02 — projects</div>
 
-    <p class="projects-intro reveal">
-      <strong>What I've Built.</strong><br>
-    </p>
-
     <div class="project-carousel-shell reveal" aria-label="Project gallery">
       <button class="project-carousel-button" id="projectPrevious" type="button" aria-label="Show previous projects">&larr;</button>
 
     <div class="project-showcase reveal" id="projectShowcase">
       <div class="project-preview" aria-label="Project dossier">
 
-        <article class="project-panel" id="project-panel-0">
+        <article class="project-panel" id="project-panel-0" data-project-order="2">
           <div class="project-preview-media">
             <img src="images/mriscan.png" alt="Brain Tumor Detection logo">
           </div>
@@ -1011,18 +896,18 @@
             <p>CNN classifier for glioma, meningioma, pituitary, and healthy MRIs, with per-class evaluation across tumor and non-tumor scans.</p>
             <dl class="project-facts">
               <div class="project-fact"><dt>Focus</dt><dd>Medical Image Classification</dd></div>
-              <div class="project-fact"><dt>Built with</dt><dd>CNN</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>ResNet-34 · ConvNeXt</dd></div>
               <div class="project-fact"><dt>Outcome</dt><dd>Model Report</dd></div>
             </dl>
             <div class="project-links">
               <a href="https://github.com/manishikab/brain-mri-classifier" target="_blank" rel="noopener noreferrer">Code →</a>
-              <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data" target="_blank" rel="noopener noreferrer">Data →</a>
+              <a href="https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data" target="_blank" rel="noopener noreferrer">Dataset (Kaggle) →</a>
               <a href="brain-ml.html" target="_blank" rel="noopener noreferrer">Model statistics →</a>
             </div>
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-1">
+        <article class="project-panel" id="project-panel-1" data-project-order="1">
           <div class="project-preview-media">
             <img src="images/gpt2.png" alt="GPT-2 logo">
           </div>
@@ -1041,7 +926,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-2">
+        <article class="project-panel" id="project-panel-2" data-project-order="4">
           <div class="project-preview-media">
             <img src="images/aa.png" alt="American Airlines logo">
           </div>
@@ -1057,7 +942,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-3">
+        <article class="project-panel" id="project-panel-3" data-project-order="0">
           <div class="project-preview-media">
             <img src="images/sartorius.png" alt="Sartorius logo">
           </div>
@@ -1071,12 +956,12 @@
               <div class="project-fact"><dt>Outcome</dt><dd>Sartorius-sponsored</dd></div>
             </dl>
             <div class="project-links">
-              <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/" target="_blank" rel="noopener noreferrer">More info →</a>
+              <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/" target="_blank" rel="noopener noreferrer">Sponsor project →</a>
             </div>
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-4">
+        <article class="project-panel" id="project-panel-4" data-project-order="3">
           <div class="project-preview-media">
             <img src="images/student_coach_ss.png" alt="Student Dashboard logo">
           </div>
@@ -1096,7 +981,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-5">
+        <article class="project-panel" id="project-panel-5" data-project-order="5">
           <div class="project-preview-media">
             <img src="images/face_rec.png" alt="Face Recognition Attendance System logo">
           </div>
@@ -1116,7 +1001,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-6">
+        <article class="project-panel" id="project-panel-6" data-project-order="6">
           <div class="project-preview-media">
             <img src="images/cat_game_ss.png" alt="Catch The Cat! logo">
           </div>
@@ -1159,10 +1044,6 @@
   <div class="wrap">
     <div class="eyebrow">03 —  research</div>
 
-    <p class="research-intro reveal">
-      <strong>What I’ve Explored.</strong><br>
-    </p>
-
     <div class="pub-list">
 
       <div class="pub-entry featured reveal">
@@ -1173,8 +1054,8 @@
           <p class="pub-summary">An ongoing machine-learning study to model neural dedifferentiation and cognitive decline in the aging brain.</p>
           <dl class="pub-facts">
             <div class="pub-fact"><dt>Question</dt><dd>Can multimodal data predict cognitive decline before it becomes symptomatic?</dd></div>
-            <div class="pub-fact"><dt>Method</dt><dd>ML + longitudinal data analysis</dd></div>
-            <div class="pub-fact"><dt>Status</dt><dd>In progress</dd></div>
+            <div class="pub-fact"><dt>Methods</dt><dd>ML + longitudinal data analysis</dd></div>
+            <div class="pub-fact"><dt>Outcome</dt><dd>In progress</dd></div>
           </dl>
         </div>
       </div>
@@ -1187,21 +1068,21 @@
           <p class="pub-summary">A connectomics study of hippocampal dentations, using high-resolution diffusion MRI to examine their structural connections.</p>
           <dl class="pub-facts">
             <div class="pub-fact"><dt>Question</dt><dd>What is the functional significance of connections between hippocampal regions and to other brain regions?</dd></div>
-            <div class="pub-fact"><dt>Method</dt><dd>Mesoscale diffusion MRI + tractography</dd></div>
+            <div class="pub-fact"><dt>Methods</dt><dd>Mesoscale diffusion MRI + tractography</dd></div>
             <div class="pub-fact"><dt>Outcome</dt><dd>Oral Presentation</dd></div>
           </dl>
         </div>
       </div>
 
       <div class="pub-entry reveal">
-        <div class="pub-type">Poster · 2024</div>
+        <div class="pub-type">Poster · 2025</div>
         <div>
           <div class="pub-title">Investigating Age-Related Neural Dedifferentiation Longitudinally and in Mild Cognitive Impairment</div>
           <div class="pub-meta">Undergraduate Research Symposium &middot; University of Michigan</div>
           <p class="pub-summary">A study of GABA differences in healthy aging and mild cognitive impairment, using magnetic resonance spectroscopy to examine inhibitory neurotransmission across brain regions.</p>
           <dl class="pub-facts">
             <div class="pub-fact"><dt>Question</dt><dd>How do GABA concentrations differ between healthy older adults and individuals with mild cognitive impairment?</dd></div>
-            <div class="pub-fact"><dt>Method</dt><dd>MRS-based comparison of GABA concentrations across task-related brain regions</dd></div>
+            <div class="pub-fact"><dt>Methods</dt><dd>MRS-based comparison of GABA concentrations across task-related brain regions</dd></div>
             <div class="pub-fact"><dt>Outcome</dt><dd>Poster</dd></div>
           </dl>
           <div class="project-links">
@@ -1218,10 +1099,6 @@
 <section id="skills">
   <div class="wrap">
     <div class="eyebrow">04 — skills</div>
-
-    <p class="skills-intro reveal">
-      <strong>What I Work With.</strong><br>
-    </p>
 
     <div class="skills-stack">
       <div class="skill-row reveal">
@@ -1272,16 +1149,10 @@
     <div class="eyebrow">05 — contact</div>
     <h2>Turning scientific insight into better technology.</h2>
     <p>I combine software, machine learning, and research to build solutions with real-world impact. If you’re building at this intersection too, I’d love to compare notes.</p>
-    <div class="contact-meta">
-      <div class="contact-label">Open to</div>
-      <div class="contact-content">
-        <div class="contact-openness">Software Engineering · Machine Learning · Research Collaboration</div>
-        <div class="contact-links">
-          <a class="btn primary" href="mailto:mbala@umich.edu" target="_blank" rel="noopener noreferrer">Send an email</a>
-          <a class="btn" href="https://www.linkedin.com/in/manishikab/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn" href="https://github.com/manishikab" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </div>
-      </div>
+    <div class="contact-links">
+      <a class="btn" href="mailto:mbala@umich.edu" target="_blank" rel="noopener noreferrer">Send an email</a>
+      <a class="btn" href="https://www.linkedin.com/in/manishikab/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/manishikab" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
   </div>
 </section>
@@ -1374,7 +1245,9 @@
     if (!showcase) return;
 
     const track = showcase.querySelector('.project-preview');
-    const panels = [...track.querySelectorAll('.project-panel')];
+    const panels = [...track.querySelectorAll('.project-panel')]
+      .sort((a, b) => Number(a.dataset.projectOrder) - Number(b.dataset.projectOrder));
+    panels.forEach(panel => track.append(panel));
     const previous = document.getElementById('projectPrevious');
     const next = document.getElementById('projectNext');
     const dots = [...document.querySelectorAll('#projectDots .project-dot')];
