@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catch the Cat — Manishika Balamurugan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#fafaf8;--panel:#ffffff;--panel-border:#e2e0da;--white:#111110;--grey:#6b6b66;--grey-dim:#a6a49c;--red:#8a0e22;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--black);color:var(--white);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  header{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--panel-border);}
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .nav-logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;}.dot{color:var(--red);}
+  .back-link{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--grey);display:flex;align-items:center;gap:8px;transition:color .2s;}.back-link:hover{color:var(--red);}
+  .page-hero{padding:90px 0 60px;border-bottom:1px solid var(--panel-border);}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--red);letter-spacing:.08em;display:flex;align-items:center;gap:10px;margin-bottom:18px;}.eyebrow::before{content:"";width:22px;height:1px;background:var(--red);display:inline-block;}
+  h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;}
+  .summary{font-size:15.5px;color:var(--grey);max-width:680px;}
+  section{padding:90px 0;border-bottom:1px solid var(--panel-border);}section:last-of-type{border-bottom:none;}
+  h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:28px;}
+  .video-frame{background:#111110;border:1px solid var(--panel-border);padding:12px;box-shadow:0 12px 32px rgba(17,17,16,.10);}
+  video{width:100%;display:block;max-height:70vh;background:#111110;}
+  .details{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--panel-border);border-left:1px solid var(--panel-border);}.detail{padding:22px;border-right:1px solid var(--panel-border);border-bottom:1px solid var(--panel-border);background:var(--panel);}.detail dt{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}.detail dd{color:var(--grey);font-size:14px;}
+  footer{padding:32px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--grey-dim);}
+  @media(max-width:720px){.details{grid-template-columns:1fr;}.wrap{padding:0 20px;}.page-hero,section{padding:64px 0;}}
+</style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <div class="nav-logo">manishika<span class="dot">.</span>dev</div>
+    <a class="back-link" href="index.html#projects">&larr; back to portfolio</a>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">project demo</div>
+    <h1>Catch the Cat</h1>
+    <p class="summary">A 2D puzzle game where each player move blocks a grid cell while the cat finds the shortest open route to the edge.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">01 — gameplay</div>
+    <h2>Watch the Demo</h2>
+    <div class="video-frame">
+      <video controls preload="metadata" poster="images/cat_game_ss.png">
+        <source src="images/cat-game/Gameplay_for_portfolio.mp4" type="video/mp4">
+        Your browser does not support embedded video. <a href="images/cat-game/Gameplay_for_portfolio.mp4">Open the demo video.</a>
+      </video>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">02 — implementation</div>
+    <h2>Gameplay Logic</h2>
+    <dl class="details">
+      <div class="detail"><dt>Core mechanic</dt><dd>Trap the cat before it reaches an open edge of the board.</dd></div>
+      <div class="detail"><dt>Algorithm</dt><dd>Breadth-first search selects the cat's shortest available path.</dd></div>
+      <div class="detail"><dt>Built with</dt><dd>C++ and SFML</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer>built by Manishika Balamurugan <span class="dot">&middot;</span> 2026</footer>
+</body>
+</html>

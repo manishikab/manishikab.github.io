@@ -85,6 +85,13 @@
     margin-bottom:44px;
   }
 
+  .section-note{
+    max-width:720px;
+    color:var(--grey);
+    font-size:15px;
+    margin:-24px 0 38px;
+  }
+
   /* ---------- scan row ---------- */
   .scan-row{
     display:grid;
@@ -170,15 +177,15 @@
 <header>
   <nav class="wrap">
     <div class="nav-logo">manishika<span class="dot">.</span>dev</div>
-    <a class="back-link" href="index.html">&larr; back to portfolio</a>
+    <a class="back-link" href="index.html#projects">&larr; back to portfolio</a>
   </nav>
 </header>
 
 <section class="page-hero">
   <div class="wrap">
     <div class="eyebrow">project</div>
-    <h1 class="page-title">Brain Tumor Detection &amp; Classification</h1>
-    <p class="page-summary">A convolutional neural network trained to classify MRI scans into tumor and non-tumor categories with high accuracy, including per-class performance across glioma, meningioma, pituitary, and normal scans.</p>
+    <h1 class="page-title">Brain MRI Classification Baselines</h1>
+    <p class="page-summary">A deep-learning experiment evaluating binary tumor detection and three-class tumor classification. The final evaluation uses a leakage-safe split that removes exact duplicate images across development and held-out data.</p>
   </div>
 </section>
 
@@ -214,23 +221,16 @@
 <section>
   <div class="wrap">
     <div class="eyebrow">02 — results</div>
-    <h2 class="section-title">Model Statistics</h2>
+    <h2 class="section-title">Held-out Baseline Results</h2>
+    <p class="section-note">The three-class baseline reached 73.4% accuracy across 233 held-out tumor images. Glioma recall was 29.8%, with most glioma images classified as meningioma.</p>
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-card-label">Training Metrics</div>
-        <div class="img-wrap"><img src="images/brain-mri/training_metrics.png" alt="Training Metrics"></div>
+        <div class="stat-card-label">Multi-Class Confusion Matrix</div>
+        <div class="img-wrap"><img src="images/brain-mri/confusion_matrix.png" alt="Held-out multi-class confusion matrix"></div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Model Accuracy</div>
-        <div class="img-wrap"><img src="images/brain-mri/accuracy_comparison.png" alt="Model Accuracy"></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Confusion Matrix</div>
-        <div class="img-wrap"><img src="images/brain-mri/confusion_matrix.png" alt="Confusion Matrix"></div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Per-Class Metrics</div>
-        <div class="img-wrap"><img src="images/brain-mri/per_class_metrics.png" alt="Per Tumor Class Metrics"></div>
+        <div class="stat-card-label">Held-out Per-Class Performance</div>
+        <div class="img-wrap"><img src="images/brain-mri/per_class_metrics.png" alt="Held-out per-class precision, recall, and F1 score"></div>
       </div>
     </div>
   </div>
