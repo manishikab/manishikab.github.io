@@ -773,8 +773,8 @@
     <div class="nav-links" id="navLinks">
       <a href="#home">home</a>
       <a href="#journey">journey</a>
+      <a href="#research">research</a>
       <a href="#projects">projects</a>
-      <a href="#publications">research</a>
       <a href="#skills">skills</a>
       <a href="#contact">contact</a>
     </div>
@@ -901,7 +901,7 @@
 <!-- ================= PROJECTS ================= -->
 <section id="projects">
   <div class="wrap">
-    <div class="eyebrow">02 — projects</div>
+    <div class="eyebrow">03 — projects</div>
 
     <div class="project-carousel-shell reveal" aria-label="Project gallery">
       <button class="project-carousel-button" id="projectPrevious" type="button" aria-label="Show previous projects">&larr;</button>
@@ -1012,7 +1012,7 @@
             <img src="images/student_coach_ss.png" alt="Student Dashboard logo">
           </div>
           <div class="project-preview-content">
-            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2026</div>
+            <div class="project-preview-tag">PERSONAL · JUNE – AUG 2025</div>
             <h3>Student Coach</h3>
             <p>Full-stack React and FastAPI planner with a chatbot that answers student questions and recommends personalized workflows.</p>
             <dl class="project-facts">
@@ -1087,9 +1087,9 @@
 
 
 <!-- ================= RESEARCH & PRESENTATIONS ================= -->
-<section id="publications">
+<section id="research">
   <div class="wrap">
-    <div class="eyebrow">03 —  research</div>
+    <div class="eyebrow">02 — research</div>
 
     <div class="pub-list">
 
@@ -1124,7 +1124,7 @@
       <div class="pub-entry reveal">
         <div class="pub-type">Poster · 2025</div>
         <div>
-          <div class="pub-title">Investigating Age-Related Neural Dedifferentiation Longitudinally and in Mild Cognitive Impairment</div>
+          <div class="pub-title">Comparing GABA Measures in Healthy Controls vs MCI Patients</div>
           <div class="pub-meta">Undergraduate Research Symposium &middot; University of Michigan</div>
           <p class="pub-summary">A study of GABA differences in healthy aging and mild cognitive impairment, using magnetic resonance spectroscopy to examine inhibitory neurotransmission across brain regions.</p>
           <dl class="pub-facts">
@@ -1209,6 +1209,10 @@
 </footer>
 
 <script>
+  const projectsSection = document.getElementById('projects');
+  const researchSection = document.getElementById('research');
+  projectsSection.parentNode.insertBefore(researchSection, projectsSection);
+
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   navToggle.addEventListener('click', () => {
