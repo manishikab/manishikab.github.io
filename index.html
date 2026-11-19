@@ -418,6 +418,29 @@
     display:block;
   }
 
+  .eeg-project-art{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#161616;
+  }
+  .eeg-project-art::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(90deg,transparent 24%,rgba(255,255,255,.08) 24.5%,transparent 25%),
+      linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px);
+    background-size:36px 100%,100% 27px;
+  }
+  .eeg-project-art svg{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+
   .project-preview-content{
     min-width:0;
     min-height:0;
@@ -886,7 +909,7 @@
     <div class="project-showcase reveal" id="projectShowcase">
       <div class="project-preview" aria-label="Project dossier">
 
-        <article class="project-panel" id="project-panel-0" data-project-order="2">
+        <article class="project-panel" id="project-panel-0" data-project-order="3">
           <div class="project-preview-media">
             <img src="images/mriscan.png" alt="Brain Tumor Detection logo">
           </div>
@@ -907,7 +930,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-1" data-project-order="1">
+        <article class="project-panel" id="project-panel-1" data-project-order="2">
           <div class="project-preview-media">
             <img src="images/gpt2.png" alt="GPT-2 logo">
           </div>
@@ -926,7 +949,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-2" data-project-order="4">
+        <article class="project-panel" id="project-panel-2" data-project-order="5">
           <div class="project-preview-media">
             <img src="images/aa.png" alt="American Airlines logo">
           </div>
@@ -942,7 +965,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-3" data-project-order="0">
+        <article class="project-panel" id="project-panel-3" data-project-order="1">
           <div class="project-preview-media">
             <img src="images/sartorius.png" alt="Sartorius logo">
           </div>
@@ -953,7 +976,7 @@
             <dl class="project-facts">
               <div class="project-fact"><dt>Focus</dt><dd>Full Stack + Simulation</dd></div>
               <div class="project-fact"><dt>Built with</dt><dd>Python · C++ · Qt</dd></div>
-              <div class="project-fact"><dt>Outcome</dt><dd>Sartorius-sponsored</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Final deliverable</dd></div>
             </dl>
             <div class="project-links">
               <a href="https://mdp.engin.umich.edu/sponsor_teams/sartorius-software-26/" target="_blank" rel="noopener noreferrer">Sponsor project →</a>
@@ -961,7 +984,30 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-4" data-project-order="3">
+        <article class="project-panel" id="project-panel-4" data-project-order="0">
+          <div class="project-preview-media">
+            <div class="eeg-project-art" role="img" aria-label="Stylized EEG waveform">
+              <svg viewBox="0 0 600 180" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 91 H44 L57 88 L69 97 L82 82 L95 104 L109 89 H150 L164 85 L175 95 L190 57 L205 122 L221 88 H267 L282 92 L294 83 L307 97 L321 88 H359 L372 86 L384 97 L396 76 L409 107 L422 91 H465 L480 86 L492 97 L505 58 L520 121 L535 90 H600" fill="none" stroke="#b31b34" stroke-width="3" vector-effect="non-scaling-stroke"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-preview-content">
+            <div class="project-preview-tag">MICHIGAN DATA SCIENCE TEAM · JUNE 2026 – PRESENT</div>
+            <h3>EEG Cognitive Modeling</h3>
+            <p>Participant-level models of group differences and visual-recognition responses in 64-channel EEG recordings.</p>
+            <dl class="project-facts">
+              <div class="project-fact"><dt>Focus</dt><dd>Cognitive Neuroscience</dd></div>
+              <div class="project-fact"><dt>Built with</dt><dd>Python · scikit-learn</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>78% held-out accuracy</dd></div>
+            </dl>
+            <div class="project-links">
+              <a href="https://github.com/manishikab/eeg-cognitive-modeling" target="_blank" rel="noopener noreferrer">Code →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-panel" id="project-panel-5" data-project-order="4">
           <div class="project-preview-media">
             <img src="images/student_coach_ss.png" alt="Student Dashboard logo">
           </div>
@@ -981,7 +1027,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-5" data-project-order="5">
+        <article class="project-panel" id="project-panel-6" data-project-order="6">
           <div class="project-preview-media">
             <img src="images/face_rec.png" alt="Face Recognition Attendance System logo">
           </div>
@@ -992,7 +1038,7 @@
             <dl class="project-facts">
               <div class="project-fact"><dt>Focus</dt><dd>Computer Vision · Automation</dd></div>
               <div class="project-fact"><dt>Built with</dt><dd>Python · OpenCV</dd></div>
-              <div class="project-fact"><dt>Outcome</dt><dd>CSV + alerts</dd></div>
+              <div class="project-fact"><dt>Outcome</dt><dd>Demo</dd></div>
             </dl>
             <div class="project-links">
               <a href="https://github.com/manishikab/face-recognition" target="_blank" rel="noopener noreferrer">Code →</a>
@@ -1001,7 +1047,7 @@
           </div>
         </article>
 
-        <article class="project-panel" id="project-panel-6" data-project-order="6">
+        <article class="project-panel" id="project-panel-7" data-project-order="7">
           <div class="project-preview-media">
             <img src="images/cat_game_ss.png" alt="Catch The Cat! logo">
           </div>
@@ -1034,6 +1080,7 @@
       <button class="project-dot" type="button" aria-label="Show project 5"></button>
       <button class="project-dot" type="button" aria-label="Show project 6"></button>
       <button class="project-dot" type="button" aria-label="Show project 7"></button>
+      <button class="project-dot" type="button" aria-label="Show project 8"></button>
     </div>
   </div>
 </section>
